@@ -7,6 +7,8 @@ exports.up = function(knex, Promise) {
     table.string('password');
     table.string('company');
     table.string('company_website');
+    table.string('status')
+      .defaultTo('employer');
     table.timestamps(true, true);
   })
 };

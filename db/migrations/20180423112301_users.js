@@ -11,6 +11,8 @@ exports.up = function(knex, Promise) {
     table.string('media_type');
     table.string('city');
     table.string('state');
+    table.string('status')
+      .defaultTo('user');
     table.timestamps(true, true);
   })
 };
