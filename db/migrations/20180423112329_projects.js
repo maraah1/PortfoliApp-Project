@@ -16,8 +16,9 @@ exports.up = function(knex, Promise) {
     .index();
     table.string('title');
     table.text('project_description');
-    table.date('project_date');
-    table.string('status');
+    table.integer('project_year');
+    table.string('status')
+      .toDefault('no post');
     table.timestamps(true, true);
   })
 };

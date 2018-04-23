@@ -10,6 +10,7 @@ exports.up = function(knex, Promise) {
     .index();
     table.string('position');
     table.string('location');
+    table.text('job_description');
     table.date('job_start');
     table.date('job_end');
     table.timestamps(true, true);
