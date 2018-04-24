@@ -8,15 +8,13 @@ module.exports = function(app) {
   //PROJECTS
 
   //USER LOGIN/REGISTRATION
-  app.get('/register/user', users.getRegistration);
+  app.get('/register/user', users.render);
   app.post('/register/user', users.postRegistration);
-  app.get('/login/user', users.getLogin);
   app.post('/login/user', users.postLogin);
 
   //EMPLOYER LOGIN/REGISTRATION
-  app.get('/register/employer', employers.getRegistration);
+  app.get('/register/employer', employers.render);
   app.post('/register/employer', employers.postRegistration);
-  app.get('/login/employer', employers.getLogin);
   app.post('/login/employer', employers.postLogin);
 
   app.use(validate);
