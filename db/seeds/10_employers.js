@@ -4,7 +4,7 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       // Inserts seed entries
       return knex('employer').insert([{
-        employee_name: "Sandy",
+        employer_name: "Sandy",
         email: "sandy@cheeks.com",
         password: "asdf",
         company: "Cartoon Productions",

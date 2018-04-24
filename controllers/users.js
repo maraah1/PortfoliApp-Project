@@ -1,15 +1,49 @@
 const knex = require("../db/knex.js");
 
 module.exports = {
-  // CHANGE ME TO AN ACTUAL FUNCTION
-  index: function(req, res) {
-    res.render("index", {name: req.session.name});
-  },
-  createName: function(req, res){
-    req.session.name = req.body.name;
 
-    req.session.save(()=>{
-      res.redirect('/')
-    })
+  getRegistration: (req, res) => {
+    res.render('userRegister')
+  },
+
+  postRegistration: (req, res) => {
+    knex('users')
+      .insert({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        phone_number: req.body.phone_number,
+        password: req.body.password,
+        bio: req.body.bio,
+        media_type: req.body.media_type,
+        city: req.body.city,
+        state: req.body.state
+      }).then((results) => {
+        console.log("user results:", results)
+        res.redirect("/register/user")
+      })
+  },
+
+  getLogin: (req, res) => {
+    res.render('userRegister')
+  },
+
+  postLogin: (req, res) => {
+    knex(users)
+      .where('email', req.body.email)
+      .then((results) => {
+        let users = results[0]
+        if (user.password === req.body.password) {
+          req.session.user_id = users.id
+          req.session.save(() => {
+            res.redirect(`/gallery/${users.id}`)
+          });
+        } else {
+          res.redirect('/register/user');
+        }
+      }).catch(() => {
+        res.redirect('/register/user')
+      })
   }
+
 }
