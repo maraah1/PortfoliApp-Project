@@ -1,5 +1,6 @@
 const users = require("../controllers/users.js")
 const employers = require("../controllers/employers.js")
+const resume = require("../controllers/resume.js")
 module.exports = function(app) {
 
   //USERS
@@ -16,6 +17,11 @@ module.exports = function(app) {
   app.get('/register/employer', employers.render);
   app.post('/register/employer', employers.postRegistration);
   app.post('/login/employer', employers.postLogin);
+
+  //RESUME
+  app.get('/resume/:id', resume.render);
+  app.get('/edit/education/:id', resume.edit);
+  app.post('/edit/education/:id', resume.updateEducation);
 
   app.use(validate);
 
