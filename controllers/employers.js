@@ -3,7 +3,7 @@ const knex = require("../db/knex.js")
 module.exports = {
 
   render: (req, res) => {
-    res.render('userRegister')
+    res.render('employerRegister')
   },
 
   postRegistration: (req, res) => {
@@ -25,10 +25,10 @@ module.exports = {
       .where('email', req.body.email)
       .then((results) => {
         let employer = results[0]
-        if (user.password === req.body.password) {
-          req.session.user_id = employer.id
+        if (employer.password === req.body.password) {
+          req.session.employer_id = employer.id
           req.session.save(() => {
-            res.redirect('/index')
+            res.redirect('/')
           });
         } else {
           res.redirect('/login/employer');
