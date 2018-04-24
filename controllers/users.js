@@ -2,22 +2,47 @@ const knex = require("../db/knex.js");
 module.exports = {
 
   index: (req, res)=>{
-    res.render('index');
-  },
-
-  bio: (req, res)=>{
-    knex('users').where('id', req.params.id)
-    .then((data)=>{
-      knex('projects').where('projects.user_id', req.params.id)
-      .join('images', 'images.project_id', 'projects.id')
-      .then((projects)=>{
-        res.render('gallery', {user: data[0], projects: projects})
-      })
+    knex('users').then((data)=>{
+      res.render('index', {users: data});
     })
   },
 
-  getRegistration: (req, res) => {
-    res.render('userRegister')
+  bio: (req, res) => {
+    knex('users').where('id', req.params.id)
+      .then((data) => {
+        knex('projects').where('projects.user_id', req.params.id)
+          .then((projects) => {
+            let promArr = []
+            for(let i = 0; i<projects.length; i++){
+              promArr.push(knex("images").where("images.project_id", projects[i].id))
+            }
+            Promise.all(promArr).then((images)=>{
+              const flatten = list => list.reduce(
+                (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
+              )
+              images = flatten(images);
+
+              projects.map((proj)=>{
+                proj.images = images.filter(img => img.project_id == proj.id);
+              })
+              console.log(projects);
+              res.render('gallery', {
+                user: data[0],
+                projects: projects,
+                images: images
+              })
+            })
+          })
+      })
+  },
+
+  render: (req, res) => {
+    knex('users').then((results) => {
+      console.log("login results:", results);
+      res.render('userRegister', {
+        users: results
+      })
+    })
   },
 
   postRegistration: (req, res) => {
@@ -38,25 +63,21 @@ module.exports = {
       })
   },
 
-  getLogin: (req, res) => {
-    res.render('userRegister')
-  },
-
   postLogin: (req, res) => {
-    knex(users)
+    knex('users')
       .where('email', req.body.email)
       .then((results) => {
-        let users = results[0]
+        let user = results[0]
         if (user.password === req.body.password) {
-          req.session.user_id = users.id
+          req.session.user_id = user.id
           req.session.save(() => {
-            res.redirect(`/gallery/${users.id}`)
+            res.redirect(`/gallery/${req.session.user_id}`)
           });
         } else {
-          res.redirect('/register/user');
+          res.redirect('/login/user');
         }
       }).catch(() => {
-        res.redirect('/register/user')
+        res.redirect('/login/user')
       })
   }
 }

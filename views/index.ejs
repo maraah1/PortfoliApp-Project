@@ -62,5 +62,10 @@
       <a href="">For Employers</a>
       <input type="text" placeholder="Search..">
     </div>
+    <div class="all-users">
+      <% for(let i=0; i<users.length; i++) { %>
+        <p><%= users[i].name %></p>
+      <% } %>
+    </div>
 </body>
 </html>

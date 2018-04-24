@@ -2,8 +2,8 @@ const knex = require("../db/knex.js")
 
 module.exports = {
 
-  getRegistration: (req, res) => {
-    res.render('employerRegister')
+  render: (req, res) => {
+    res.render('userRegister')
   },
 
   postRegistration: (req, res) => {
@@ -18,10 +18,6 @@ module.exports = {
         console.log("employee results:", results)
         res.redirect("/register/employer")
       })
-  },
-
-  getLogin: (req, res) => {
-    res.render('userRegister')
   },
 
   postLogin: (req, res) => {
