@@ -1,5 +1,6 @@
 const users = require("../controllers/users.js")
 const employers = require("../controllers/employers.js")
+const project = require("../controllers/project.js")
 module.exports = function(app) {
 
   //USERS
@@ -18,6 +19,10 @@ module.exports = function(app) {
   app.post('/login/employer', employers.postLogin);
 
   app.use(validate);
+
+  //PROJECT ADDER
+  app.get('/addproject/:id', project.render);
+  // app.post('addproject/:id', project.form)
 
 }
 

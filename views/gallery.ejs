@@ -11,8 +11,17 @@
   <h1><%= user.first_name %> <%= user.last_name %></h1>
   <p>Specialty: <%= user.media_type %></p>
   <p><%= user.bio %></p>
-  <a href="">My Resume</a>
+  <button id="resume_button" type="button" name="button">Resume</button>
   <hr>
+
+<% if(user.status == "user"){ %>
+  <style>
+     #resume_button {
+      display: block;
+    }
+  </style>
+<% } %>
+
 
   <div id="gallery">
     <% for(let i=0; i<projects.length; i++) { %>
@@ -23,10 +32,12 @@
       <% } %><br>
       <%= projects[i].project_description %><br>
       <a href="">View more...</a>
-
     </div><br>
     <% } %>
-  </div>
+
+    <form action="/addproject/<%= user.id %>">
+         <button type="submit">Add Project</button>
+    </form>
 
 </body>
 </html>
