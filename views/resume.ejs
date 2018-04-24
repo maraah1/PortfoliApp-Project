@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Resume</title>
+  <style>
+    a{
+      float: left;
+      margin-right: 1em;
+    }
+  </style>
+</head>
+<body>
+<h1><%= user.first_name %> <%= user.last_name %></h1>
+<% for (let i=0; i<resume.length; i++) { %>
+  <p><%= resume[i].summary %></p>
+<% } %>
+<h2>Education</h2>
+<% for (let i=0; i<education.length; i++) { %>
+  <p><%= education[i].school_name %></p>
+  <p><%= education[i].degree %></p>
+  <p><%= education[i].start_date.toLocaleDateString('en-US') %> to <%= education[i].end_date.toLocaleDateString('en-US') %></p>
+<% } %>
+<a href="/edit/education/<%= user.id %>"</a>Edit Education</a>
+<a href="/edit/education/<%= user.id %>"</a>Add New Education</a><br>
+<h2>Employment History</h2>
+<% for (let i=0; i<employment.length; i++) { %>
+  <p><%= employment[i].position %></p>
+  <p><%= employment[i].location %></p>
+  <p><%= employment[i].job_description %></p>
+  <p><%= employment[i].job_start.toLocaleDateString('en-US') %> to <%= employment[i].job_end.toLocaleDateString('en-US') %></p>
+<% } %>
+<a href="/edit/employment/<%= user.id %>"</a>Edit Employment</a>
+<a href="/edit/employment/<%= user.id %>"</a>Add New Employment History</a><br>
+<h2>Skills</h2>
+<% for(let i=0; i<skills.length; i++) { %>
+  <p><%= skills[i].skill %></p>
+<% } %>
+<a href="/edit/skill/<%= user.id %>"</a>Edit Skill</a>
+<a href="/edit/skill/<%= user.id %>"</a>Add New Skill</a><br>
+<h2>Awards</h2>
+<% for(let i=0; i<awards.length; i++) { %>
+  <p><%= awards[i].award_name %></p>
+  <p><%= awards[i].award_description %></p>
+  <p><%= awards[i].year %></p>
+<% } %>
+<a href="/edit/award/<%= user.id %>"</a>Edit Award</a>
+<a href="/edit/award/<%= user.id %>"</a>Add New Award</a><br>
+<h2>Events</h2>
+<% for(let i=0; i<events.length; i++) { %>
+  <p><%= events[i].event_name %></p>
+  <p><%= events[i].event_description %></p>
+  <p><%= events[i].event_date.toLocaleDateString('en-US') %></p>
+<% } %>
+<a href="/edit/event/<%= user.id %>"</a>Edit Event</a>
+<a href="/edit/event/<%= user.id %>"</a>Add New Event</a><br>
+</body>
+</html>
