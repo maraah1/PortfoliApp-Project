@@ -3,8 +3,8 @@ const employers = require("../controllers/employers.js")
 module.exports = function(app) {
 
   //USERS
-  app.get('/gallery/:id', users.bio)
-
+  app.get('/gallery/:id', users.bio);
+  app.get('/', users.index);
   //PROJECTS
 
   //USER LOGIN/REGISTRATION

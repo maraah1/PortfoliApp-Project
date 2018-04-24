@@ -1,6 +1,10 @@
 const knex = require("../db/knex.js");
 module.exports = {
 
+  index: (req, res)=>{
+    res.render('index');
+  },
+
   bio: (req, res)=>{
     knex('users').where('id', req.params.id)
     .then((data)=>{
