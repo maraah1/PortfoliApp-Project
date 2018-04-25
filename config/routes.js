@@ -23,11 +23,16 @@ module.exports = function(app) {
 
   //RESUME
   app.get('/resume', resume.render);
+
   app.get('/edit/skill/:id', resume.editSkill);
   app.post('/edit/skill/:id', resume.updateSkill);
   app.get('/add/skill/:resume_id', resume.addSkill);
   app.post('/add/skill/:resume_id', resume.postSkill);
+
   app.get('/edit/education/:id', resume.editEd);
+  app.post('/edit/education/:id', resume.updateEd);
+  app.get('/add/education/:education_id', resume.addEd);
+  app.post('/add/education/:education_id', resume.postEd);
 
 
   //PROJECT ADDER
