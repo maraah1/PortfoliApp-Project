@@ -31,8 +31,8 @@ module.exports = function(app) {
 
   app.get('/edit/education/:id', resume.editEd);
   app.post('/edit/education/:id', resume.updateEd);
-  app.get('/add/education/:education_id', resume.addEd);
-  app.post('/add/education/:education_id', resume.postEd);
+  app.get('/add/education/:resume_id', resume.addEd);
+  app.post('/add/education/:resume_id', resume.postEd);
 
 
   //PROJECT ADDER

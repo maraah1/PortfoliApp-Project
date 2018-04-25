@@ -75,33 +75,25 @@ render: (req, res)=>{
   },
 
   editEd: (req, res)=>{
-    knex('resume').where('user_id', req.session.user_id)
-    .then((resume)=>{
-      resume = resume[0];
-      knex('education').where("education.resume_id", resume.id)
+      knex('education').where("education.id", req.params.id)
       .then((education)=>{
-        res.render('editEd', {education: education})
+        res.render('editEd', {education: education[0]})
       })
-    })
   },
 
   updateEd: (req, res)=>{
-    knex('resume').where('user_id', req.session.user_id)
-    .then((resume)=>{
-      resume = resume[0];
       knex('education')
       .select('education.school_name', 'education.degree', 'education.start_date', 'education_end_date')
-      .where('education.resume_id', resume.id)
+      .where('education.id', req.params.id)
       .update({
         school_name: req.body.school_name,
         degree: req.body.degree,
         start_date: req.body.start_date,
         end_date: req.body.end_date
       })
-      .then((skills)=>{
+      .then(()=>{
         res.redirect('/resume')
       })
-    })
   },
 
   addEd: (req, res)=>{
@@ -116,7 +108,15 @@ render: (req, res)=>{
   },
 
   postEd: (req, res)=>{
-
+    knex("education").insert({
+      resume_id: req.params.resume_id,
+      school_name:req.body.school_name,
+      degree: req.body.degree,
+      start_date: req.body.start_date,
+      end_date: req.body.end_date
+    }).then(()=>{
+      res.redirect(`/add/education/${req.params.resume_id}`)
+    })
   }
 
 
