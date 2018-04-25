@@ -77,10 +77,10 @@ module.exports = {
             res.redirect(`/gallery/${req.session.user_id}`)
           });
         } else {
-          res.redirect('/login/user');
+          res.redirect('/register/user');
         }
       }).catch(() => {
-        res.redirect('/login/user')
+        res.redirect('/register/user')
       })
   }
 }

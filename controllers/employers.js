@@ -27,16 +27,17 @@ module.exports = {
       .where('email', req.body.email)
       .then((results) => {
         let user = results[0]
-        if (users.password === req.body.password) {
+        console.log(user);
+        if (user.password === req.body.password) {
           req.session.user_id = user.id
           req.session.save(() => {
             res.redirect('/')
           });
         } else {
-          res.redirect('/login/employer');
+          res.redirect('/register/employer');
         }
       }).catch(() => {
-        res.redirect('/login/employer')
+        res.redirect('/register/employer')
       })
   }
 
