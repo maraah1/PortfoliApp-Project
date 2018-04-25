@@ -14,7 +14,7 @@
   <h1><%= user.first_name %> <%= user.last_name %></h1>
   <p>Specialty: <%= user.media_type %></p>
   <p><%= user.bio %></p>
-  <a id="resume_button" href="/resume">My Resume</a>
+  <a id="resume_button" href="/resume/<%= user.id%>">My Resume</a>
   <hr>
 
   <% if(user.status == "user"){ %>
@@ -58,14 +58,14 @@
        <button type="submit">Add Project</button>
   </form>
 
-  <% if (user.status == "user") { %>
+  <% if (loggedUser.status == "user") { %>
  <style media="screen">
    #add_project {
-     display:block;
+     display: block;
    }
  </style>
 
-  <% } else { %>
+  <% } else if(loggedUser.status == "employer"){ %>
     <style media="screen">
       #add_project {
         display: none;
