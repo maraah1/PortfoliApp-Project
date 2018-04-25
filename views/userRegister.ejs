@@ -6,40 +6,78 @@
     <link href="/styles.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <style>
+      .btn, .btn-large, .btn-small {
+        text-decoration: none;
+        color: #fff;
+        background-color: #e25b4b;
+        text-align: center;
+        letter-spacing: .5px;
+        -webkit-transition: background-color .2s ease-out;
+        transition: background-color .2s ease-out;
+        cursor: pointer;
+        margin-top: 1em;
+      }
+      .btn:hover{
+        background-color: #ff6f5f;
+      }
+      .page-footer{
+        margin-top: 2em;
+        background-color: #fff;
+      }
+    </style>
+    <script defer>
+      $(document).ready(function(){
+        $('select').formSelect();
+      });
+    </script>
   </head>
   <body>
-    <h1>Register</h1>
-    <br>
-    <form class="" action="/register/user" method="post">
-      <input type="text" name="first_name" placeholder="First Name">
-      <input type="text" name="last_name" placeholder="Last Name">
-      <input type="text" name="email" placeholder="email">
-      <input type="text" name="phone_number" placeholder="Phone Number">
-      <input type="password" name="password" placeholder="password">
-      <input type="text" name="bio" placeholder="Bio">
-      <input type="text" name="profile_pic" placeholder="Profile Picture">
-      <select type="text" name="media_type" placeholder="Media Type">
-       <option>illustrator</option>
-       <option>developer</option>
-       <option>designer</option>
-       <option>graphic artist</option>
-       <option>painter</option>
-       <option>sculptor</option>
-      </select>
-    <input type="text" name="city" placeholder="City">
-    <input type="text" name="state" placeholder="State">
-    <input type="text" name="status" value="User">
-    <button type="submit">Register</button>
-  </form>
-    <br>
-    <hr>
-    <br>
-    <h1>Login</h1>
-      <form class="" action="/login/user" method="post">
-        <input type="text" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Submit</button>
-      </form>
+
+    <div class="container">
+      <h1>Register</h1>
+      <br>
+      <form action="/register/user" method="post">
+        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <input type="text" name="email" placeholder="email">
+        <input type="text" name="phone_number" placeholder="Phone Number">
+        <input type="password" name="password" placeholder="password">
+        <input type="text" name="bio" placeholder="Bio">
+        <input type="text" name="profile_pic" placeholder="Profile Picture">
+        <div class="input-field col s12">
+          <select type="text" name="media_type">
+           <option value="1">illustrator</option>
+           <option value="2">developer</option>
+           <option value="3">designer</option>
+           <option value="4">graphic artist</option>
+           <option value="5">painter</option>
+           <option value="6">sculptor</option>
+          </select>
+          <label>Media Type</label>
+        </div>
+      <input type="text" name="city" placeholder="City">
+      <input type="text" name="state" placeholder="State">
+      <input type="text" name="status" value="User">
+      <button class="btn waves-effect waves-light" type="submit">Register</button>
     </form>
+      <br>
+
+      <br>
+      <h1>Login</h1>
+        <form class="" action="/login/user" method="post">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <button class="btn waves-effect waves-light" type="submit">Submit</button>
+        </form>
+      </form>
+    </div>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row"></div>
+      </div>
+    </footer>
   </body>
 </html>
