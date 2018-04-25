@@ -5,7 +5,6 @@ const resume = require("../controllers/resume.js")
 module.exports = function(app) {
 
   //USERS
-  app.get('/gallery/:id', users.bio);
   app.get('/', users.index);
   //PROJECTS
 
@@ -28,7 +27,8 @@ module.exports = function(app) {
   app.get('/add/skill/:resume_id', resume.addSkill);
   app.post('/add/skill/:resume_id', resume.postSkill);
 
-
+  //GALLERY
+  app.get('/gallery/:id', users.bio);
 
   //PROJECT ADDER
   app.get('/addproject', project.render);

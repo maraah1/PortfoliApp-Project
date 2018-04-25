@@ -1,9 +1,11 @@
 const knex = require("../db/knex.js");
 module.exports = {
 
-  index: (req, res)=>{
-    knex('users').then((data)=>{
-      res.render('index', {users: data});
+  index: (req, res) => {
+    knex('users').then((data) => {
+      res.render('index', {
+        users: data
+      });
     })
   },
 
@@ -13,16 +15,16 @@ module.exports = {
         knex('projects').where('projects.user_id', req.params.id)
           .then((projects) => {
             let promArr = []
-            for(let i = 0; i<projects.length; i++){
+            for (let i = 0; i < projects.length; i++) {
               promArr.push(knex("images").where("images.project_id", projects[i].id))
             }
-            Promise.all(promArr).then((images)=>{
+            Promise.all(promArr).then((images) => {
               const flatten = list => list.reduce(
                 (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
               )
               images = flatten(images);
 
-              projects.map((proj)=>{
+              projects.map((proj) => {
                 proj.images = images.filter(img => img.project_id == proj.id);
               })
               console.log(projects);
@@ -56,7 +58,8 @@ module.exports = {
         bio: req.body.bio,
         media_type: req.body.media_type,
         city: req.body.city,
-        state: req.body.state
+        state: req.body.state,
+        status: req.body.status
       }).then((results) => {
         console.log("user results:", results)
         res.redirect("/register/user")

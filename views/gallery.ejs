@@ -14,8 +14,31 @@
   <h1><%= user.first_name %> <%= user.last_name %></h1>
   <p>Specialty: <%= user.media_type %></p>
   <p><%= user.bio %></p>
-  <a href="/resume">My Resume</a>
+  <a id="resume_button" href="/resume">My Resume</a>
   <hr>
+
+  <% if(user.status == "user"){ %>
+    <style media="screen">
+      #resume_button {
+        display:block;
+      }
+    </style>
+  <% } else if(user.status == "employer") { %>
+    <style media="screen">
+      #resume_button {
+        display: block;
+      }
+     </style>
+   <% } else { %>
+     <style media="screen">
+       #resume_button {
+         display: none;
+       }
+     </style>
+   <% } %>
+
+
+
 
   <div id="gallery">
     <% for(let i=0; i<projects.length; i++) { %>
@@ -31,9 +54,26 @@
     <% } %>
   </div>
 
-  <form action="/addproject/<%= user.id %>">
+  <form id="add_project" action="/addproject/<%= user.id %>">
        <button type="submit">Add Project</button>
   </form>
+
+  <% if (user.status == "user") { %>
+ <style media="screen">
+   #add_project {
+     display:block;
+   }
+ </style>
+
+  <% } else { %>
+    <style media="screen">
+      #add_project {
+        display: none;
+      }
+    </style>
+  <% } %>
+
+
 
 
 </body>

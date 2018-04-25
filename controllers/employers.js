@@ -7,26 +7,28 @@ module.exports = {
   },
 
   postRegistration: (req, res) => {
-    knex('employer')
+    knex('users')
       .insert({
-        employer_name: req.body.employer_name,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
         company: req.body.company,
-        company_website: req.body.company_website
+        company_website: req.body.company_website,
+        status: req.body.status
       }).then((results) => {
-        console.log("employee results:", results)
+        console.log("employer results:", results)
         res.redirect("/register/employer")
       })
   },
 
   postLogin: (req, res) => {
-    knex('employer')
+    knex('users')
       .where('email', req.body.email)
       .then((results) => {
-        let employer = results[0]
-        if (employer.password === req.body.password) {
-          req.session.employer_id = employer.id
+        let user = results[0]
+        if (users.password === req.body.password) {
+          req.session.user_id = user.id
           req.session.save(() => {
             res.redirect('/')
           });

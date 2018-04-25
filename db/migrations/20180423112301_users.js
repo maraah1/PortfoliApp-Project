@@ -6,13 +6,14 @@ exports.up = function(knex, Promise) {
     table.string('email');
     table.string('phone_number');
     table.string('password');
+    table.string('company');
+    table.text('company_website')
     table.text('bio');
     table.text('profile_pic')
     table.string('media_type');
     table.string('city');
     table.string('state');
     table.string('status')
-      .defaultTo('user');
     table.timestamps(true, true);
   })
 };
