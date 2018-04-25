@@ -6,6 +6,8 @@
     <link href="/styles.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
     <style>
       .btn, .btn-large, .btn-small {
         text-decoration: none;
@@ -26,13 +28,18 @@
         background-color: #fff;
       }
     </style>
+    <script defer>
+      $(document).ready(function(){
+        $('select').formSelect();
+      });
+    </script>
   </head>
   <body>
 
     <div class="container">
       <h1>Register</h1>
       <br>
-      <form class="" action="/register/user" method="post">
+      <form action="/register/user" method="post">
         <input type="text" name="first_name" placeholder="First Name">
         <input type="text" name="last_name" placeholder="Last Name">
         <input type="text" name="email" placeholder="email">
@@ -40,14 +47,17 @@
         <input type="password" name="password" placeholder="password">
         <input type="text" name="bio" placeholder="Bio">
         <input type="text" name="profile_pic" placeholder="Profile Picture">
-        <select type="text" name="media_type" placeholder="Media Type">
-         <option>illustrator</option>
-         <option>developer</option>
-         <option>designer</option>
-         <option>graphic artist</option>
-         <option>painter</option>
-         <option>sculptor</option>
-        </select>
+        <div class="input-field col s12">
+          <select type="text" name="media_type">
+           <option value="1">illustrator</option>
+           <option value="2">developer</option>
+           <option value="3">designer</option>
+           <option value="4">graphic artist</option>
+           <option value="5">painter</option>
+           <option value="6">sculptor</option>
+          </select>
+          <label>Media Type</label>
+        </div>
       <input type="text" name="city" placeholder="City">
       <input type="text" name="state" placeholder="State">
       <input type="text" name="status" value="User">
