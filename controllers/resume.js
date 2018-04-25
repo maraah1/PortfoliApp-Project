@@ -2,9 +2,9 @@ const knex = require("../db/knex.js");
 module.exports = {
 
 render: (req, res)=>{
-  knex('users').where('id', req.params.id)
+  knex('users').where('id', req.session.user_id)
   .then((data) => {
-    knex('resume').where('user_id', req.params.id)
+    knex('resume').where('user_id', req.session.user_id)
     .then((resume)=>{
       resume = resume[0];
       knex('education').where("education.resume_id", resume.id)
@@ -55,18 +55,23 @@ render: (req, res)=>{
   },
 
   addSkill: (req, res)=>{
-    knex('resume').where('user_id', req.params.id)
+    knex('resume').where('user_id', req.session.user_id)
     .then((resume)=>{
       resume = resume[0];
       knex('skills').where("skills.resume_id", resume.id)
       .then((skills)=>{
-        res.render('addSkill', {skills: skills});
+        res.render('addSkill', {resume, skills: skills});
       })
     })
   },
 
   postSkill: (req, res)=>{
-
+    knex("skills").insert({
+      skill:req.body.skill,
+      resume_id: req.params.resume_id
+    }).then(()=>{
+      res.redirect(`/add/skill/${req.params.resume_id}`)
+    })
   }
 
 

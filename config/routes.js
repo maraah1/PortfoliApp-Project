@@ -18,15 +18,16 @@ module.exports = function(app) {
   app.post('/register/employer', employers.postRegistration);
   app.post('/login/employer', employers.postLogin);
 
+  app.use(validate);
+
   //RESUME
-  app.get('/resume/:id', resume.render);
+  app.get('/resume', resume.render);
   app.get('/edit/skill/:id', resume.editSkill);
   app.post('/edit/skill/:id', resume.updateSkill);
-  app.get('/add/skill/:id', resume.addSkill);
-  app.post('/add/skill/:id', resume.postSkill);
+  app.get('/add/skill/:resume_id', resume.addSkill);
+  app.post('/add/skill/:resume_id', resume.postSkill);
 
 
-  app.use(validate);
 
 }
 
