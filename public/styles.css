@@ -1,0 +1,15 @@
+.skills{
+  background-color: green;
+}
+h1, h2, h3{
+  color: #16b1b5;
+}
+.material-icons {
+  color: #16b1b5;
+  padding-right: 10px;
+}
+.resume a {
+  color: #e25b4b;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}

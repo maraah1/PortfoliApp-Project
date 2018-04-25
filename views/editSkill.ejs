@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Edit Skill</title>
+  <link href="/styles.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+</head>
+<body>
+
+<h1>Skills</h1>
+
+<form class="skills" action="" method="POST">
+  <% for(let i=0; i<skills.length; i++) { %>
+  <input type="text" name="skill" value="<%= skills[i].skill %>"><br><br>
+  <% } %>
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

@@ -20,8 +20,11 @@ module.exports = function(app) {
 
   //RESUME
   app.get('/resume/:id', resume.render);
-  app.get('/edit/education/:id', resume.edit);
-  app.post('/edit/education/:id', resume.updateEducation);
+  app.get('/edit/skill/:id', resume.editSkill);
+  app.post('/edit/skill/:id', resume.updateSkill);
+  app.get('/add/skill/:id', resume.addSkill);
+  app.post('/add/skill/:id', resume.postSkill);
+
 
   app.use(validate);
 

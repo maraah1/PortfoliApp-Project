@@ -11,50 +11,82 @@
       margin-right: 1em;
     }
   </style>
+  <link href="/styles.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
 </head>
 <body>
-<h1><%= user.first_name %> <%= user.last_name %></h1>
-<% for (let i=0; i<resume.length; i++) { %>
-  <p><%= resume[i].summary %></p>
-<% } %>
-<h2>Education</h2>
-<% for (let i=0; i<education.length; i++) { %>
-  <p><%= education[i].school_name %></p>
-  <p><%= education[i].degree %></p>
-  <p><%= education[i].start_date.toLocaleDateString('en-US') %> to <%= education[i].end_date.toLocaleDateString('en-US') %></p>
-<% } %>
-<a href="/edit/education/<%= user.id %>"</a>Edit Education</a>
-<a href="/edit/education/<%= user.id %>"</a>Add New Education</a><br>
-<h2>Employment History</h2>
-<% for (let i=0; i<employment.length; i++) { %>
-  <p><%= employment[i].position %></p>
-  <p><%= employment[i].location %></p>
-  <p><%= employment[i].job_description %></p>
-  <p><%= employment[i].job_start.toLocaleDateString('en-US') %> to <%= employment[i].job_end.toLocaleDateString('en-US') %></p>
-<% } %>
-<a href="/edit/employment/<%= user.id %>"</a>Edit Employment</a>
-<a href="/edit/employment/<%= user.id %>"</a>Add New Employment History</a><br>
-<h2>Skills</h2>
-<% for(let i=0; i<skills.length; i++) { %>
-  <p><%= skills[i].skill %></p>
-<% } %>
-<a href="/edit/skill/<%= user.id %>"</a>Edit Skill</a>
-<a href="/edit/skill/<%= user.id %>"</a>Add New Skill</a><br>
-<h2>Awards</h2>
-<% for(let i=0; i<awards.length; i++) { %>
-  <p><%= awards[i].award_name %></p>
-  <p><%= awards[i].award_description %></p>
-  <p><%= awards[i].year %></p>
-<% } %>
-<a href="/edit/award/<%= user.id %>"</a>Edit Award</a>
-<a href="/edit/award/<%= user.id %>"</a>Add New Award</a><br>
-<h2>Events</h2>
-<% for(let i=0; i<events.length; i++) { %>
-  <p><%= events[i].event_name %></p>
-  <p><%= events[i].event_description %></p>
-  <p><%= events[i].event_date.toLocaleDateString('en-US') %></p>
-<% } %>
-<a href="/edit/event/<%= user.id %>"</a>Edit Event</a>
-<a href="/edit/event/<%= user.id %>"</a>Add New Event</a><br>
+
+  <div class="container resume">
+
+    <h1><%= user.first_name %> <%= user.last_name %></h1>
+    <div class="row user-info">
+      <p class="col s4"><i class="material-icons">call</i><%= user.phone_number %></p>
+      <p class="col s4"><i class="material-icons">mail</i><%= user.email %></p>
+      <p class="col s4"><i class="material-icons">place</i><%= user.city %>, <%= user.state %></p>
+    </div>
+
+    <p><%= resume.summary %></p>
+
+    <div class="row">
+      <section id="education" class="col s12 m6 l6">
+        <h2>Education</h2>
+        <% for (let i=0; i<education.length; i++) { %>
+          <p><%= education[i].school_name %></p>
+          <p><%= education[i].degree %></p>
+          <p><%= education[i].start_date.toLocaleDateString('en-US') %> to <%= education[i].end_date.toLocaleDateString('en-US') %></p>
+        <% } %>
+        <a href="/edit/education/<%= user.id %>"</a>Edit Education</a>
+        <a href="/add/education/<%= user.id %>"</a>Add New Education</a><br>
+      </section>
+      <section id="skills" class="col s12 m6 l6">
+        <h2>Skills</h2>
+        <% for(let i=0; i<skills.length; i++) { %>
+          <p><%= skills[i].skill %></p>
+        <% } %>
+        <a href="/edit/skill/<%= user.id %>"</a>Edit Skill</a>
+        <a href="/add/skill/<%= user.id %>"</a>Add New Skill</a><br>
+      </section>
+    </div>
+
+    <div class="row">
+      <section id="employment" class="col s12 m6 l6">
+        <h2>Employment</h2>
+        <% for (let i=0; i<employment.length; i++) { %>
+          <p><%= employment[i].position %></p>
+          <p><%= employment[i].location %></p>
+          <p><%= employment[i].job_description %></p>
+          <p><%= employment[i].job_start.toLocaleDateString('en-US') %> to <%= employment[i].job_end.toLocaleDateString('en-US') %></p><br>
+        <% } %>
+        <a href="/edit/employment/<%= user.id %>"</a>Edit Employment</a>
+        <a href="/add/employment/<%= user.id %>"</a>Add New Employment History</a><br>
+      </section>
+      <section id="awards" class="col s12 m6 l6">
+        <h2>Awards</h2>
+        <% for(let i=0; i<awards.length; i++) { %>
+          <p><%= awards[i].award_name %></p>
+          <p><%= awards[i].award_description %></p>
+          <p><%= awards[i].year %></p>
+        <% } %>
+        <a href="/edit/award/<%= user.id %>"</a>Edit Award</a>
+        <a href="/add/award/<%= user.id %>"</a>Add New Award</a><br>
+        <h2>Events</h2>
+        <% for(let i=0; i<events.length; i++) { %>
+          <p><%= events[i].event_name %></p>
+          <p><%= events[i].event_description %></p>
+          <p><%= events[i].event_date.toLocaleDateString('en-US') %></p>
+        <% } %>
+        <a href="/edit/event/<%= user.id %>"</a>Edit Event</a>
+        <a href="/add/event/<%= user.id %>"</a>Add New Event</a><br>
+      </section>
+    </div>
+
+    <div class="row">
+      <section id="events" class="col s12 m6 l6 offset-m6 offset-l6">
+      </section>
+    </div>
+
+  </div>
 </body>
 </html>

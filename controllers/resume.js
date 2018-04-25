@@ -27,40 +27,47 @@ render: (req, res)=>{
   })
   },
 
-  edit: (req, res)=>{
-  knex('users').where('id', req.params.id)
-  .then((data) => {
+  editSkill:(req, res)=>{
     knex('resume').where('user_id', req.params.id)
     .then((resume)=>{
       resume = resume[0];
-      knex('education').where("education.resume_id", resume.id)
-      .then((education)=>{
-        res.render('editEducation', {user: data[0], education: education});
-      })
+      knex('skills').where("skills.resume_id", resume.id)
+      .then((skills)=>{
+        res.render('editSkill', {skills: skills});
       })
     })
   },
 
-  updateEducation: (req, res)=>{
-  knex('users').where('id', req.params.id)
-  .then((data) => {
+  updateSkill: (req, res)=>{
     knex('resume').where('user_id', req.params.id)
     .then((resume)=>{
       resume = resume[0];
-      knex('education')
-      .select('education.school_name', 'education.degree', 'education.start_date', 'education.end_date')
-      .where("education.resume_id", resume.id)
+      knex('skills')
+      .select('skills.skill')
+      .where("skills.resume_id", resume.id)
       .update({
-        school_name: req.params.school_name,
-        degree: req.params.degree,
-        start_date: req.params.start_date,
-        end_date: req.params.end_date
+        skill: req.body.skill
       })
-      .then(()=>{
+      .then((skills)=>{
         res.redirect('/resume/:id')
       })
+    })
+  },
+
+  addSkill: (req, res)=>{
+    knex('resume').where('user_id', req.params.id)
+    .then((resume)=>{
+      resume = resume[0];
+      knex('skills').where("skills.resume_id", resume.id)
+      .then((skills)=>{
+        res.render('addSkill', {skills: skills});
       })
     })
+  },
+
+  postSkill: (req, res)=>{
+
   }
+
 
 }
