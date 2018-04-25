@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Edit Education</title>
+  <link href="/styles.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+  <style>
+    .btn, .btn-large, .btn-small, .btn-floating {
+      text-decoration: none;
+      color: #fff;
+      background-color: #e25b4b;
+      text-align: center;
+      letter-spacing: .5px;
+      -webkit-transition: background-color .2s ease-out;
+      transition: background-color .2s ease-out;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+    .btn:hover, .btn-floating:hover{
+      background-color: #ff6f5f;
+    }
+    .btn-floating{
+      font-size: .7em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/resume" class="btn-floating">BACK</a>
+    <h3>Edit Education Entry:</h3>
+    <form action="/edit/education/<%= education.id%>" method="POST">
+      <input type="text" name="school_name" value="<%= education.school_name%>">
+      <input type="text" name="degree" value="<%= education.degree%>">
+      <input type="text" name="start_date" value="<%= education.start_date.toLocaleDateString('en-us')%>">
+      <input type="text" name="end_date" value="<%= education.end_date.toLocaleDateString('en-us')%>">
+      <button class="btn waves-effect waves-light" type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -4,10 +4,39 @@ h1, h2, h3{
 }
 .material-icons {
   color: #16b1b5;
-  padding-right: 10px;
+  padding: .5em;
+  font-size: 14px;
 }
 .resume a {
   color: #e25b4b;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+}
+#resume-content, #resume-header{
+  padding-left: 2em;
+}
+#resume-header{
+  text-align: center;
+}
+
+.resume{
+  border: 2px solid #a2a2a2;
+}
+#summary{
+  border-bottom: 2px solid #a2a2a2;
+  margin: 0;
+}
+#skill, #employment, #education, #award, #event{
+  color: #e25b4b;
+  font-size: 14px;
+}
+#flow {
+  text-align: center;
+  font-size: 1em;
+  padding: 0 2em;
+  margin-bottom: 2em;
+}
+#position1, #position2, #position3, #position4, #position5{
+  font-size: 1.2em;
+  color: #343434;
 }

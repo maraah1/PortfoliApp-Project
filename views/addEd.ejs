@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Add New Education</title>
+  <link href="/styles.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+  <style>
+      .btn, .btn-large, .btn-small, .btn-floating {
+        text-decoration: none;
+        color: #fff;
+        background-color: #e25b4b;
+        text-align: center;
+        letter-spacing: .5px;
+        -webkit-transition: background-color .2s ease-out;
+        transition: background-color .2s ease-out;
+        cursor: pointer;
+        margin-top: 1em;
+      }
+      .btn:hover, .btn-floating:hover{
+        background-color: #ff6f5f;
+      }
+      .btn-floating{
+        font-size: .7em;
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/resume" class="btn-floating">BACK</a>
+    <h3>Education</h3>
+
+    <div>
+      <% for(let i=0; i<education.length; i++) { %>
+        <p class="flow-text" id="position1"><%= education[i].school_name %></p>
+        <p><%= education[i].degree %></p>
+        <p><%= education[i].start_date.toLocaleDateString('en-US') %> to <%= education[i].end_date.toLocaleDateString('en-US') %></p><br>
+      <% } %>
+    </div>
+
+    <hr><br>
+
+    <form action="/add/education/<%=resume.id%>" method="POST">
+      <input type="text" name="school_name" placeholder="School Name">
+      <input type="text" name="degree" placeholder="Degree">
+      <input type="date" name="start_date">
+      <input type="date" name="end_date">
+      <button class="btn waves-effect waves-light" type="submit">Submit</button>
+    </form>
+
+  </div>
+
+</body>
+</html>

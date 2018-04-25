@@ -2,30 +2,50 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Employer Register</title>
     <link href="/styles.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+    <style>
+      .btn, .btn-large, .btn-small {
+        text-decoration: none;
+        color: #fff;
+        background-color: #e25b4b;
+        text-align: center;
+        letter-spacing: .5px;
+        -webkit-transition: background-color .2s ease-out;
+        transition: background-color .2s ease-out;
+        cursor: pointer;
+        margin-top: 1em;
+      }
+      .btn:hover{
+        background-color: #ff6f5f;
+      }
+    </style>
   </head>
   <body>
-    <h1>Register</h1>
-    <form class="" action="/register/employer" method="post">
-      <input type="text" name="first_name" placeholder="First name">
-      <input type="text" name="last_name" placeholder="last_name">
-      <input type="text" name="email" placeholder="Email">
-      <input type="password" name="password" placeholder="Password">
-      <input type="text" name="company" placeholder="Company">
-      <input type="text" name="company_website" placeholder="Company Url">
-      <input type="text" name="status" value="Employer">
-      <button type="submit">Submit</button>
-    </form>
-    <br>
-    <hr>
-    <h1>Login</h1>
-    <form class="" action="/login/employer" method="post">
-      <input type="text" name="email" placeholder="Email">
-      <input type="password" name="password" placeholder="Password">
-      <button type="submit">Submit</button>
-    </form>
+
+    <div class="container">
+      <h1>Register</h1>
+      <form class="" action="/register/employer" method="post">
+        <input type="text" name="first_name" placeholder="First name">
+        <input type="text" name="last_name" placeholder="last_name">
+        <input type="text" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="text" name="company" placeholder="Company">
+        <input type="text" name="company_website" placeholder="Company Url">
+        <input type="text" name="status" value="Employer">
+        <button class="btn waves-effect waves-light" type="submit">Submit</button>
+      </form>
+      <br>
+      <hr>
+      <h1>Login</h1>
+      <form class="" action="/login/employer" method="post">
+        <input type="text" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <button class="btn waves-effect waves-light" type="submit">Submit</button>
+      </form>
+    </div>
+
   </body>
 </html>

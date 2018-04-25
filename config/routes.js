@@ -22,6 +22,7 @@ module.exports = function(app) {
 
   //RESUME
   app.get('/resume', resume.render);
+
   app.get('/edit/skill/:id', resume.editSkill);
   app.post('/edit/skill/:id', resume.updateSkill);
   app.get('/add/skill/:resume_id', resume.addSkill);
@@ -29,7 +30,10 @@ module.exports = function(app) {
 
   //GALLERY
   app.get('/gallery/:id', users.bio);
-
+  app.get('/edit/education/:id', resume.editEd);
+  app.post('/edit/education/:id', resume.updateEd);
+  app.get('/add/education/:resume_id', resume.addEd);
+  app.post('/add/education/:resume_id', resume.postEd);
   //PROJECT ADDER
   app.get('/addproject', project.render);
   app.post('/addproject', project.projectform);
