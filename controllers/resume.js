@@ -19,6 +19,7 @@ module.exports = {
                               .then((awards) => {
                                 knex('users').where("id", req.session.user_id)
                                   .then((loggedUser) => {
+                                    console.log("loggedUser", loggedUser)
                                     res.render('resume', {
                                       loggedUser: loggedUser[0],
                                       user: data[0],

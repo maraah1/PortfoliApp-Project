@@ -35,8 +35,8 @@ module.exports = function(app) {
   app.post('/add/education/:resume_id', resume.postEd);
 
   //PROJECT ADDER
-  app.get('/addproject', project.render);
-  app.post('/addproject', project.projectform);
+  app.get('/addproject/:id', project.render);
+  app.post('/addproject/:id', project.projectform);
 
 
 }
