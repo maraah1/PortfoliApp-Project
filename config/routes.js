@@ -27,8 +27,8 @@ module.exports = function(app) {
   app.use(validate);
 
   //PROJECT ADDER
-  app.get('/addproject/:id', project.render);
-  app.post('addproject/:id', project.projectform);
+  app.get('/addproject', project.render);
+  app.post('/addproject', project.projectform);
 
 
 }
