@@ -1,5 +1,6 @@
 const users = require("../controllers/users.js")
 const employers = require("../controllers/employers.js")
+const project = require("../controllers/project.js")
 const resume = require("../controllers/resume.js")
 module.exports = function(app) {
 
@@ -27,6 +28,11 @@ module.exports = function(app) {
   app.get('/add/skill/:resume_id', resume.addSkill);
   app.post('/add/skill/:resume_id', resume.postSkill);
 
+
+
+  //PROJECT ADDER
+  app.get('/addproject', project.render);
+  app.post('/addproject', project.projectform);
 
 
 }

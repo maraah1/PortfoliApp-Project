@@ -56,19 +56,35 @@
     .topnav input[type=text] {
         border: 1px solid #ccc;
     }
+
+    .user_list{
+      background-color: lightgrey;
+    }
+
+    #pic {
+      display: block;
+    }
 }
   </style>
 </head>
 <body>
     <div class="topnav">
-      <a href="">For Users</a>
-      <a href="">For Employers</a>
+      <a href="/register/user">For Users</a>
+      <a href="/register/employer">For Employers</a>
       <input type="text" placeholder="Search..">
     </div>
-    <div class="all-users">
-      <% for(let i=0; i<users.length; i++) { %>
-        <p><%= users[i].name %></p>
-      <% } %>
+    <br>
+  <% for(let i = 0; i < users.length; i++) { %>
+    <div class="user_list card">
+      <img id="pic" src="<%= users[i].profile_pic %>" alt="">
+      <%= users[i].first_name %>
+      <%= users[i].last_name %>
+      <%= users[i].media_type %>
+      <form action="/gallery/<%= users[i].id %>">
+           <button type="submit">View</button>
+      </form>
     </div>
+  <% } %>
+
 </body>
 </html>
