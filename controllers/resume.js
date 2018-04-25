@@ -72,6 +72,9 @@ render: (req, res)=>{
     }).then(()=>{
       res.redirect(`/add/skill/${req.params.resume_id}`)
     })
+  },
+  editEd: (req, res)=>{
+    res.render('editEd')
   }
 
 

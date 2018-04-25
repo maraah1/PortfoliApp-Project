@@ -27,7 +27,7 @@ module.exports = function(app) {
   app.post('/edit/skill/:id', resume.updateSkill);
   app.get('/add/skill/:resume_id', resume.addSkill);
   app.post('/add/skill/:resume_id', resume.postSkill);
-
+  app.get('/edit/education/:id', resume.editEd);
 
 
   //PROJECT ADDER
