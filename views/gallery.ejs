@@ -11,67 +11,75 @@
 </head>
 <body>
 
-  <h1><%= user.first_name %> <%= user.last_name %></h1>
-  <p>Specialty: <%= user.media_type %></p>
-  <p><%= user.bio %></p>
-  <a id="resume_button" href="/resume">My Resume</a>
-  <hr>
+  <div class="container">
+    <div class="row">
+      <img class="circle responsive-img col s3" src="<%= user.profile_pic %>">
+      <h1 class="col s3"><%= user.first_name %> <%= user.last_name %></h1>
+      <div class="col s3">
+        <p>Specialty: <%= user.media_type %></p>
+        <p><%= user.bio %></p>
+      </div>
+      <a class="col s3" id="resume_button" href="/resume">My Resume</a>
+    </div>
+    <hr>
 
-  <% if(user.status == "user"){ %>
-    <style media="screen">
-      #resume_button {
-        display:block;
-      }
-    </style>
-  <% } else if(user.status == "employer") { %>
-    <style media="screen">
-      #resume_button {
-        display: block;
-      }
-     </style>
-   <% } else { %>
-     <style media="screen">
-       #resume_button {
-         display: none;
-       }
-     </style>
-   <% } %>
+    <% if(user.status == "user"){ %>
+      <style media="screen">
+        #resume_button {
+          display:block;
+        }
+      </style>
+    <% } else if(user.status == "employer") { %>
+      <style media="screen">
+        #resume_button {
+          display: block;
+        }
+       </style>
+     <% } else { %>
+       <style media="screen">
+         #resume_button {
+           display: none;
+         }
+       </style>
+     <% } %>
 
 
 
 
-  <div id="gallery">
-    <% for(let i=0; i<projects.length; i++) { %>
-    <div class="project">
-      <%= projects[i].title %><br>
-      <% for(let j=0; j<projects[i].images.length; j++) { %>
-       <img src="<%= projects[i].images[j].img_url %>" style="width: 200px">
-      <% } %><br>
-      <%= projects[i].project_description %><br>
-      <a href="">View more...</a>
+    <div id="gallery">
+      <% for(let i=0; i<projects.length; i++) { %>
+      <div class="project">
+        <%= projects[i].title %><br>
+        <% for(let j=0; j<projects[i].images.length; j++) { %>
+         <img src="<%= projects[i].images[j].img_url %>" style="width: 200px">
+        <% } %><br>
+        <%= projects[i].project_description %><br>
+        <a href="">View more...</a>
 
-    </div><br>
+      </div><br>
+      <% } %>
+    </div>
+
+    <form id="add_project" action="/addproject/<%= user.id %>">
+         <button type="submit">Add Project</button>
+    </form>
+
+    <% if (user.status == "user") { %>
+   <style media="screen">
+     #add_project {
+       display:block;
+     }
+   </style>
+
+    <% } else { %>
+      <style media="screen">
+        #add_project {
+          display: none;
+        }
+      </style>
     <% } %>
   </div>
 
-  <form id="add_project" action="/addproject/<%= user.id %>">
-       <button type="submit">Add Project</button>
-  </form>
-
-  <% if (user.status == "user") { %>
- <style media="screen">
-   #add_project {
-     display:block;
-   }
- </style>
-
-  <% } else { %>
-    <style media="screen">
-      #add_project {
-        display: none;
-      }
-    </style>
-  <% } %>
 
 
 
