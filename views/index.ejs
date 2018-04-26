@@ -16,63 +16,82 @@
   nav{
     background-color: #16b1b5;
   }
-  input[type=text]:not(.browser-default){
-    width: 50%;
-    margin-left: 1em;
-    border-bottom: 1px solid #d0d0d0;
+  .nav-wrapper .input-field input[type=search]{
+    width: 25%;
+    margin-left: 2em;
   }
-  .input-field input[type=text]:focus {
-     border-bottom: 1px solid #fff;
-     box-shadow: 0 1px 0 0 #000;
-   }
-
+  #login{
+    z-index: 1;
+    position:relative;
+    margin-right: 2em;
+  }
+  .card{
+    -webkit-box-shadow: 0 0 0 0;
+    box-shadow: 0 0 0 0;
+    margin-left: 5em;
+    margin-top: 2em;
+  }
+  .btn, .btn-large, .btn-small, .btn-floating {
+    text-decoration: none;
+    color: #fff;
+    background-color: #e25b4b;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+  }
+  .btn:hover, .btn-floating:hover{
+    background-color: #ff6f5f;
+  }
+  .btn-floating{
+    font-size: .7em;
+  }
   </style>
 </head>
 <body>
 
     <nav>
       <div class="nav-wrapper">
-        <input class="brand-logo" type="text" placeholder="Search..">
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="login" class="right">
           <li><a href="/register/user">For Users</a></li>
           <li><a href="/register/employer">For Employers</a></li>
         </ul>
+        <div class="input-field">
+          <input type="search" placeholder="Search..">
+        </div>
       </div>
     </nav>
 
-    <div class="topnav">
-
-
-
-    </div>
-    <br>
-  <% for(let i = 0; i < users.length; i++) { %>
-      <% if(users[i].status == "employer") { %>
-        <%console.log("users[i]", users[i])%>
+    <div class="container">
+      <h1 class="center">Portfolio App</h1>
+      <% for(let i = 0; i < users.length; i++) { %>
+          <% if(users[i].status == "employer") { %>
+            <style media="screen">
+              .user_list {
+                display: inline-block;
+              }
+            </style>
+          <% } else if(users[i].status == "user") { %>
+          <div class="user_list card ">
+          <img id="pic" class="responsive-image" src="<%= users[i].profile_pic %>" alt="">
+          <p><%= users[i].first_name %> <%= users[i].last_name %></p>
+          <p><%= users[i].media_type %></p>
+          <form action="/gallery/<%= users[i].id %>">
+            <button class="btn waves-effect waves-light" type="submit">View</button>
+          </form>
+          <% } %>
+        </div>
+      <% } %>
+      <% if(users.status == "employer") { %>
         <style media="screen">
           .user_list {
-            display: block;
+            display: none;
           }
         </style>
-      <% } else if(users[i].status == "user") { %>
-      <div class="user_list card">
-      <img id="pic" class="responsive-image" src="<%= users[i].profile_pic %>" alt="">
-      <%= users[i].first_name %>
-      <%= users[i].last_name %>
-      <%= users[i].media_type %>
-      <form action="/gallery/<%= users[i].id %>">
-           <button type="submit">View</button>
-      </form>
       <% } %>
     </div>
-  <% } %>
-  <% if(users.status == "employer") { %>
-    <style media="screen">
-      .user_list {
-        display: none;
-      }
-    </style>
-  <% } %>
+
 
 </body>
 </html>
