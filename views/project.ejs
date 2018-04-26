@@ -2,21 +2,51 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Add a Project</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script defer>
+        $(document).ready(function(){
+          $('select').formSelect();
+        });
+    </script>
+    <style>
+      .btn, .btn-large, .btn-small {
+        text-decoration: none;
+        color: #fff;
+        background-color: #e25b4b;
+        text-align: center;
+        letter-spacing: .5px;
+        -webkit-transition: background-color .2s ease-out;
+        transition: background-color .2s ease-out;
+        cursor: pointer;
+        margin-top: 1em;
+      }
+      .btn:hover{
+        background-color: #ff6f5f;
+      }
+    </style>
   </head>
   <body>
-  <h1>Add New Project</h1>
-  <form class="" action="/addproject" method="post">
-    <input type="text" name="title" placeholder="Title of Project">
-    <input type="text" name="project_description" placeholder="Project Description">
-    <input type="text" name="project_year" placeholder="Year of Project">
-    <select type="text" name="status" placeholder="Want To Post To Resume?">
-      <option>post</option>
-      <option>no post</option>
-    </select>
-    <input type="text" name="img_url" placeholder="Image Link">
-    <input type="text" name="caption" placeholder="Caption of Image">
-    <button type="submit">Add Project</button>
-  </form>
+    <div class="container">
+      <h1>Add New Project</h1>
+      <form class="" action="/addproject" method="post">
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="project_description" placeholder="Description">
+        <input type="text" name="project_year" placeholder="Year">
+        <div class="input-field col s12">
+          <select type="text" name="status">
+            <option value="1">post</option>
+            <option value="2">no post</option>
+          </select>
+          <label>Post To Resume?</label>
+        </div>
+        <input type="text" name="img_url" placeholder="Image URL">
+        <input type="text" name="caption" placeholder="Caption">
+        <button class="btn waves-effect waves-light" type="submit">Add Project</button>
+      </form>
+    </div>
   </body>
 </html>
