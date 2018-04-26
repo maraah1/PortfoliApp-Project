@@ -17,19 +17,19 @@
   <a id="resume_button" href="/resume/<%= user.id%>">My Resume</a>
   <hr>
 
-  <% if(user.status == "user"){ %>
+  <% if(loggedUser.status == "user"){ %>
     <style media="screen">
       #resume_button {
         display:block;
       }
     </style>
-  <% } else if(user.status == "employer") { %>
+  <% } else if(loggedUser.status == "employer") { %>
     <style media="screen">
       #resume_button {
         display: block;
       }
      </style>
-   <% } else { %>
+   <% } else if(!loggedUser.status) { %>
      <style media="screen">
        #resume_button {
          display: none;
