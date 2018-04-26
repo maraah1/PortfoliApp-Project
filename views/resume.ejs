@@ -28,6 +28,19 @@
       font-size: .7em;
       margin: 2em;
     }
+    button{
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+    form{
+      width: 25%;
+      display: inline-block;
+
+    }
+    #skills_section .flow-text{
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -67,22 +80,21 @@
           <a class="edit_buttons" href="/add/education/<%= resume.id %>"</a>Add New Education</a><br>
           <!--  -->
         </section>
-        <section class="col s12 m6 l6">
 
+        <section id="skills_section" class="col s12 m6 l6">
           <h2>Skills</h2>
           <% for(let i=0; i<skills.length; i++) { %>
             <!-- PENCIL BUTTON -->
-            <p class="flow-text" id="position2"><%= skills[i].skill %>
+            <p class="flow-text" id="position2"><%= skills[i].skill %></p>
             <a href="/edit/skill/<%= skills[i].id %>"</a><i id="skill" class="material-icons">edit</i></a>
             <form class="" action="/delete/skill/<%= skills[i].id %>" method="post">
              <button type="submit"><i id="deleteEd"
                class="material-icons">delete</i></button>
-            </form>
+            </form><br>
             <!--  -->
           <% } %>
           <!-- EDIT BUTTON -->
           <a class="edit_buttons" href="/add/skill/<%= resume.id %>"</a>Add New Skill</a><br>
-          <!--  -->
         </section>
       </div>
 

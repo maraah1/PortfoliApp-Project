@@ -42,32 +42,25 @@ module.exports = {
   },
 
   editSkill: (req, res) => {
-    knex('resume').where('user_id', req.params.id)
-      .then((resume) => {
-        resume = resume[0];
-        knex('skills').where("skills.resume_id", resume.id)
+        knex('skills').where("skills.id", req.params.id)
           .then((skills) => {
             res.render('editSkill', {
-              skills: skills
+              skills: skills,
+              user_id: req.session.user_id
             });
           })
-      })
   },
 
   updateSkill: (req, res) => {
-    knex('resume').where('user_id', req.params.id)
-      .then((resume) => {
-        resume = resume[0];
         knex('skills')
           .select('skills.skill')
-          .where("skills.resume_id", resume.id)
+          .where("skills.id", req.params.id)
           .update({
             skill: req.body.skill
           })
           .then((skills) => {
-            res.redirect('/resume')
+            res.redirect(`/resume/${req.session.user_id}`)
           })
-      })
   },
 
   addSkill: (req, res) => {
