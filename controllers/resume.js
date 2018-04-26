@@ -28,7 +28,8 @@ module.exports = {
                                       employment: employment,
                                       skills: skills,
                                       events: events,
-                                      awards: awards
+                                      awards: awards,
+                                      user_id: req.session.user_id
                                     })
 
                                   })
@@ -97,7 +98,8 @@ module.exports = {
     knex('education').where("education.id", req.params.id)
       .then((education) => {
         res.render('editEd', {
-          education: education[0]
+          education: education[0],
+          user_id: req.session.user_id
         })
       })
   },

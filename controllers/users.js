@@ -27,7 +27,6 @@ module.exports = {
               projects.map((proj) => {
                 proj.images = images.filter(img => img.project_id == proj.id);
               })
-              console.log(projects);
               knex("users").where("id", req.session.user_id).then((loggedUser) => {
                 res.render('gallery', {
                   user: data[0],
@@ -63,7 +62,6 @@ module.exports = {
         state: req.body.state,
         status: req.body.status
       }).then((results) => {
-        console.log("user results:", results)
         res.redirect("/register/user")
       })
   },

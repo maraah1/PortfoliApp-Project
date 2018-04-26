@@ -30,7 +30,7 @@
 </head>
 <body>
   <div class="container">
-    <a href="/resume" class="btn-floating">BACK</a>
+    <a href="/resume/<%=user_id%>" class="btn-floating">BACK</a>
     <h3>Edit Education Entry:</h3>
     <form action="/edit/education/<%= education.id%>" method="POST">
       <input type="text" name="school_name" value="<%= education.school_name%>">

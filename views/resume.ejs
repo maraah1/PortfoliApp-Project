@@ -9,8 +9,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+  <style>
+    .btn, .btn-large, .btn-small, .btn-floating {
+      text-decoration: none;
+      color: #fff;
+      background-color: #e25b4b;
+      text-align: center;
+      letter-spacing: .5px;
+      -webkit-transition: background-color .2s ease-out;
+      transition: background-color .2s ease-out;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+    .btn:hover, .btn-floating:hover{
+      background-color: #ff6f5f;
+    }
+    .btn-floating{
+      font-size: .7em;
+      margin: 2em;
+    }
+  </style>
 </head>
 <body>
+  <a href="/gallery/<%=user_id%>" class="btn-floating">BACK</a>
 
   <div class="container resume">
     <div id="resume-header">
