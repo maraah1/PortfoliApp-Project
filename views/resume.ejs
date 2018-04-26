@@ -138,7 +138,7 @@
 
        <% if (loggedUser.status == "user") { %>
          <style media="screen">
-           #education, #skill, #employment, #award, #event, #deleteSkill, #deleteEmployment {
+           #education, #skill, #employment, #award, #event, #deleteEd, #deleteSkill, #deleteEmployment {
              display: inline-block;
            }
            .edit_buttons {
@@ -147,7 +147,7 @@
          </style>
       <% } else if(loggedUser.status == "employer") { %>
          <style media="screen">
-         #education, #skill, #employment, #award, #event, #deleteEd, #deleteSkill, #deleteEmployment {
+         #education, #skill, #employment, #award, #event, #deleteEd, #deleteSkill, #deleteEmployment, #deleteAward, #deleteEvent {
            display: none;
          }
          .edit_buttons {

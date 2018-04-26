@@ -86,15 +86,14 @@
 
     <div id="gallery" class="row">
       <% for(let i=0; i<projects.length; i++) { %>
-      <div class="project col s6">
+      <div class="project col s4 offset-1">
         <p id="project_title" class="flow-text"><%= projects[i].title %></p><br>
         <% for(let j=0; j<projects[i].images.length; j++) { %>
          <img class="hoverable responsive-img" src="<%= projects[i].images[j].img_url %>" style="width: 200px">
         <% } %><br>
-        <p class="truncate random"><%= projects[i].project_description %></p><br>
-        <a class="btn-floating" href="">View more...</a>
+        <p class=""><%= projects[i].project_description %></p><br>
         <form class="" action="/gallery/delete/ <%= projects[i].id%>" method="post">
-          <button type="submit">Delete</button>
+          <button class="btn-floating" type="submit">Delete</button>
         </form>
       </div>
       <% } %>
