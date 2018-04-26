@@ -38,9 +38,7 @@ module.exports = function(app) {
   app.get('/addproject/:id', project.render);
   app.post('/addproject/:id', project.projectform);
 
-
 }
-
 
 const validate = (req, res, next) => {
   req.session.user_id ? next() : res.redirect('/register/user')
