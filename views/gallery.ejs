@@ -59,7 +59,7 @@
     <div class="col s12 m3 l3 bio">
       <p class="flow-text">Specialty: <%= user.media_type %><br>Bio: <%= user.bio %></p>
     </div>
-    <a class="col s12 m3 l3 flow-text" id="resume_button" href="/resume">My Resume</a>
+    <a class="col s12 m3 l3 flow-text" id="resume_button" href="/resume/<%= user.id %>">My Resume</a>
   </div>
 
   <div class="container">
