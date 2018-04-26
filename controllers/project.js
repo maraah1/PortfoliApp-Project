@@ -3,7 +3,11 @@ const knex = require("../db/knex.js")
 module.exports = {
 
   render: (req, res) => {
-    res.render('project');
+    knex('projects').then((results) => {
+      res.render('project', {
+        project: results
+      });
+    })
   },
 
   projectform: (req, res) => {

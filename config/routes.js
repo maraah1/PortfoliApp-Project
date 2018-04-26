@@ -35,10 +35,12 @@ module.exports = function(app) {
   app.post('/add/education/:resume_id', resume.postEd);
 
   //PROJECT ADDER
-  app.get('/addproject/:id', project.render);
-  app.post('/addproject/:id', project.projectform);
+  app.get('/addproject', project.render);
+  app.post('/addproject', project.projectform);
+
 
 }
+
 
 const validate = (req, res, next) => {
   req.session.user_id ? next() : res.redirect('/register/user')
