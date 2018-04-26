@@ -23,7 +23,6 @@ module.exports = {
                 (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
               )
               images = flatten(images);
-
               projects.map((proj) => {
                 proj.images = images.filter(img => img.project_id == proj.id);
               })
