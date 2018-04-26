@@ -63,7 +63,7 @@ module.exports = {
         state: req.body.state,
         status: req.body.status
       }).then((results) => {
-        console.log("user results:", results)
+        // console.log("user results:", results)
         res.redirect("/register/user")
       })
   },
@@ -84,5 +84,26 @@ module.exports = {
       }).catch(() => {
         res.redirect('/register/user')
       })
+  },
+
+  getDelete: (req, res) => {
+    res.render('gallery')
+  },
+
+  delete: (req, res) => {
+    knex('projects')
+      .where('projects.user_id', req.session.user_id)
+      .delete()
+      .then((proResults) => {
+        console.log('new project results:', proResults)
+        knex('images')
+          .where('images.project_id', proResults[0].id)
+          .delete()
+          .then((results) => {
+            res.redirect(`/gallery/${req.session.user_id}`)
+          })
+      })
   }
+
+
 }
