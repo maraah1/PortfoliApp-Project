@@ -15,7 +15,7 @@
   <div class="container resume">
     <div id="resume-header">
       <h1><%= user.first_name %> <%= user.last_name %></h1>
-      <div class="row user-info">
+      <div class="row loggedUser-info">
         <p class="col s4"><i class="material-icons">call</i><%= user.phone_number %></p>
         <p class="col s4"><i class="material-icons">mail</i><%= user.email %></p>
         <p class="col s4"><i class="material-icons">place</i><%= user.city %>, <%= user.state %></p>
@@ -27,54 +27,104 @@
     <div id="resume-content">
       <div class="row">
         <section class="col s12 m6 l6">
+
           <h2>Education</h2>
           <% for (let i=0; i<education.length; i++) { %>
-            <a href="/edit/education/<%= education[i].id %>"</a><i id="education" class="material-icons">edit</i></a>
+            <!-- PENCIL BUTTON -->
+            <a href="/edit/education/<%= education[i].id %>"</a><i id="education"
+           class="material-icons">edit</i></a>
+           <!--  -->
             <p class="flow-text" id="position1"><%= education[i].school_name %></p>
             <p><%= education[i].degree %></p>
             <p><%= education[i].start_date.toLocaleDateString('en-US') %> to <%= education[i].end_date.toLocaleDateString('en-US') %></p>
           <% } %>
-          <a href="/add/education/<%= resume.id %>"</a>Add New Education</a><br>
+          <!-- EDIT BUTTON -->
+          <a class="edit_buttons" href="/add/education/<%= resume.id %>"</a>Add New Education</a><br>
+          <!--  -->
         </section>
         <section class="col s12 m6 l6">
+
           <h2>Skills</h2>
           <% for(let i=0; i<skills.length; i++) { %>
-            <p class="flow-text" id="position2"><%= skills[i].skill %><a href="/edit/skill"</a><i id="skill" class="material-icons">edit</i></a></p>
+            <p class="flow-text" id="position2"><%= skills[i].skill %>
+            <!-- PENCIL BUTTON -->
+            <a href="/edit/skill"</a><i id="skill" class="material-icons">edit</i></a></p>
+            <!--  -->
           <% } %>
-          <a href="/add/skill/<%= resume.id %>"</a>Add New Skill</a><br>
+          <!-- EDIT BUTTON -->
+          <a class="edit_buttons" href="/add/skill/<%= resume.id %>"</a>Add New Skill</a><br>
+          <!--  -->
         </section>
       </div>
 
       <div class="row">
         <section class="col s12 m6 l6">
+
           <h2>Employment</h2>
             <% for (let i=0; i<employment.length; i++) { %>
+          <!-- PENCIL BUTTON -->
               <a href="/edit/employment"</a><i id="employment" class="material-icons">edit</i></a>
+            <!--  -->
               <p class="flow-text" id="position3"><%= employment[i].position %></p>
               <p><%= employment[i].location %></p>
               <p><%= employment[i].job_description %></p>
               <p><%= employment[i].job_start.toLocaleDateString('en-US') %> to <%= employment[i].job_end.toLocaleDateString('en-US') %></p><br>
             <% } %>
-          <a href="/add/employment/<%= user.id %>"</a>Add New Employment</a><br>
+          <!-- EDIT BUTTON -->
+          <a class="edit_buttons" href="/add/employment/<%= loggedUser.id %>"</a>Add New Employment</a><br>
+          <!--  -->
         </section>
         <section class="col s12 m6 l6">
+
+
           <h2>Awards</h2>
           <% for(let i=0; i<awards.length; i++) { %>
+            <!-- PENCIL BUTTON -->
             <a href="/edit/award"</a><i id="award" class="material-icons">edit</i></a>
+            <!--  -->
             <p class="flow-text" id="position4"><%= awards[i].award_name %></p>
             <p><%= awards[i].award_description %></p>
             <p><%= awards[i].year %></p>
           <% } %>
-          <a href="/add/award/<%= user.id %>"</a>Add New Award</a><br>
+           <!-- EDIT BUTTON -->
+          <a class="edit_buttons" href="/add/award/<%= loggedUser.id %>"</a>Add New Award</a><br>
+           <!--  -->
+
           <h2>Events</h2>
           <% for(let i=0; i<events.length; i++) { %>
+            <!-- PENCIL BUTTON -->
             <a href="/edit/event"</a><i id="event" class="material-icons">edit</i></a>
+            <!--  -->
             <p class="flow-text" id="position5"><%= events[i].event_name %></p>
             <p><%= events[i].event_description %></p>
             <p><%= events[i].event_date.toLocaleDateString('en-US') %></p>
           <% } %>
-          <a href="/add/event/<%= user.id %>"</a>Add New Event</a><br>
+          <!-- EDIT BUTTON -->
+          <a class="edit_buttons" href="/add/event/<%= loggedUser.id %>"</a>Add New Event</a><br>
+          <!--  -->
         </section>
+
+       <% if (loggedUser.status == "user") { %>
+         <style media="screen">
+           #education, #skill, #employment, #award, #event {
+             display: inline-block;
+           }
+           .edit_buttons {
+             display: inline-block;
+           }
+         </style>
+      <% } else if(loggedUser.status == "employer") { %>
+         <style media="screen">
+         #education, #skill, #employment, #award, #event {
+           display: none;
+         }
+         .edit_buttons {
+           display: none;
+         }
+         </style>
+      <% } %>
+
+
       </div>
     </div>
 

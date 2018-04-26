@@ -75,7 +75,15 @@
     </div>
     <br>
   <% for(let i = 0; i < users.length; i++) { %>
-    <div class="user_list card">
+      <% if(users[i].status == "employer") { %>
+        <%console.log("users[i]", users[i])%>
+        <style media="screen">
+          .user_list {
+            display: block;
+          }
+        </style>
+      <% } else if(users[i].status == "user") { %>
+      <div class="user_list card">
       <img id="pic" src="<%= users[i].profile_pic %>" alt="">
       <%= users[i].first_name %>
       <%= users[i].last_name %>
@@ -83,7 +91,15 @@
       <form action="/gallery/<%= users[i].id %>">
            <button type="submit">View</button>
       </form>
+      <% } %>
     </div>
+  <% } %>
+  <% if(users.status == "employer") { %>
+    <style media="screen">
+      .user_list {
+        display: none;
+      }
+    </style>
   <% } %>
 
 </body>

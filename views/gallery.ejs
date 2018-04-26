@@ -117,5 +117,20 @@
     <% } %>
   </div>
 
+  <% if (loggedUser.status == "user") { %>
+ <style media="screen">
+   #add_project {
+     display: block;
+   }
+ </style>
+
+  <% } else if(loggedUser.status == "employer"){ %>
+    <style media="screen">
+      #add_project {
+        display: none;
+      }
+    </style>
+  <% } %>
+
 </body>
 </html>

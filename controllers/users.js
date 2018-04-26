@@ -3,6 +3,7 @@ module.exports = {
 
   index: (req, res) => {
     knex('users').then((data) => {
+      console.log("index results:", data)
       res.render('index', {
         users: data
       });
@@ -28,10 +29,13 @@ module.exports = {
                 proj.images = images.filter(img => img.project_id == proj.id);
               })
               console.log(projects);
-              res.render('gallery', {
-                user: data[0],
-                projects: projects,
-                images: images
+              knex("users").where("id", req.session.user_id).then((loggedUser) => {
+                res.render('gallery', {
+                  user: data[0],
+                  projects: projects,
+                  images: images,
+                  loggedUser: loggedUser[0]
+                })
               })
             })
           })
