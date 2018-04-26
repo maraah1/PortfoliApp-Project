@@ -61,8 +61,6 @@ module.exports = {
         state: req.body.state,
         status: req.body.status
       }).then((results) => {
-
-        console.log("user results:", results)
         res.redirect("/register/user")
       })
   },
@@ -91,16 +89,11 @@ module.exports = {
 
   delete: (req, res) => {
     knex('projects')
-      .where('projects.user_id', req.session.user_id)
+      .where('id', req.params.id)
       .delete()
       .then((proResults) => {
         console.log('deleted results:', proResults)
-        knex('images')
-          .where('images.project_id', proResults[0].id)
-          .delete()
-          .then((results) => {
-            res.redirect(`/gallery/${req.session.user_id}`)
-          })
+        res.redirect(`/gallery/${req.session.user_id}`)
       })
   }
 
