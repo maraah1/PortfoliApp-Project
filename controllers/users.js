@@ -3,6 +3,7 @@ module.exports = {
 
   index: (req, res) => {
     knex('users').then((data) => {
+      console.log("index results:", data)
       res.render('index', {
         users: data
       });
