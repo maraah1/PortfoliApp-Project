@@ -83,10 +83,6 @@ module.exports = {
       })
   },
 
-  getDelete: (req, res) => {
-    res.render('gallery')
-  },
-
   delete: (req, res) => {
     knex('projects')
       .where('id', req.params.id)

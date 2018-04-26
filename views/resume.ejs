@@ -54,8 +54,10 @@
             <!-- PENCIL BUTTON -->
             <a href="/edit/education/<%= education[i].id %>"</a><i id="education"
            class="material-icons">edit</i></a>
-            <a href="/delete/education/<%= education[i].id %>"</a><i id="deleteEd"
-           class="material-icons">delete</i></a>
+           <form class="" action="/delete/education/<%= education[i].id %>" method="post">
+            <button type="submit"><i id="deleteEd"
+              class="material-icons">delete</i></button>
+           </form>
            <!--  -->
             <p class="flow-text" id="position1"><%= education[i].school_name %></p>
             <p><%= education[i].degree %></p>
@@ -71,8 +73,11 @@
           <% for(let i=0; i<skills.length; i++) { %>
             <!-- PENCIL BUTTON -->
             <p class="flow-text" id="position2"><%= skills[i].skill %>
-            <a href="/edit/skill"</a><i id="skill" class="material-icons">edit</i></a>
-            <a href="/delete/skill"</a><i id="deleteSkill" class="material-icons">delete</i></a></p>
+            <a href="/edit/skill/<%= skills[i].id %>"</a><i id="skill" class="material-icons">edit</i></a>
+            <form class="" action="/delete/skill/<%= skills[i].id %>" method="post">
+             <button type="submit"><i id="deleteEd"
+               class="material-icons">delete</i></button>
+            </form>
             <!--  -->
           <% } %>
           <!-- EDIT BUTTON -->

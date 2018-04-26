@@ -143,6 +143,24 @@ module.exports = {
     }).then(() => {
       res.redirect(`/add/education/${req.params.resume_id}`)
     })
+  },
+
+  deleteEdu: (req, res) => {
+    knex('education')
+      .where('id', req.params.id)
+      .delete()
+      .then((results) => {
+        res.redirect(`/resume/${req.session.user_id}`)
+      })
+  },
+
+  deleteSkill: (req, res) => {
+    knex('skills')
+      .where('id', req.params.id)
+      .delete()
+      .then((results) => {
+        res.redirect(`/resume/${req.session.user_id}`)
+      })
   }
 
 

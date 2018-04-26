@@ -26,6 +26,8 @@ module.exports = function(app) {
   app.post('/edit/skill/:id', resume.updateSkill);
   app.get('/add/skill/:resume_id', resume.addSkill);
   app.post('/add/skill/:resume_id', resume.postSkill);
+  app.post('/delete/education/:id', resume.deleteEdu);
+  app.post('/delete/skill/:id', resume.deleteSkill);
 
   //GALLERY
   app.get('/gallery/:id', users.bio);
