@@ -29,16 +29,13 @@
         display: block;
       }
      </style>
-   <% } else if(!loggedUser.status) { %>
+   <% } else if(!loggedUser) { %>
      <style media="screen">
        #resume_button {
          display: none;
        }
      </style>
    <% } %>
-
-
-
 
   <div id="gallery">
     <% for(let i=0; i<projects.length; i++) { %>
@@ -72,9 +69,6 @@
       }
     </style>
   <% } %>
-
-
-
 
 </body>
 </html>

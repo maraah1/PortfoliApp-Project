@@ -84,7 +84,7 @@
         </style>
       <% } else if(users[i].status == "user") { %>
       <div class="user_list card">
-      <img id="pic" src="<%= users[i].profile_pic %>" alt="">
+      <img id="pic" class="responsive-image" src="<%= users[i].profile_pic %>" alt="">
       <%= users[i].first_name %>
       <%= users[i].last_name %>
       <%= users[i].media_type %>

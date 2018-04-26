@@ -8,21 +8,43 @@
   <link href="/styles.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+  <style>
+    .btn, .btn-large, .btn-small, .btn-floating {
+      text-decoration: none;
+      color: #fff;
+      background-color: #e25b4b;
+      text-align: center;
+      letter-spacing: .5px;
+      -webkit-transition: background-color .2s ease-out;
+      transition: background-color .2s ease-out;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+    .btn:hover, .btn-floating:hover{
+      background-color: #ff6f5f;
+    }
+    .btn-floating{
+      font-size: .7em;
+    }
+  </style>
 </head>
 <body>
-  <h1>Skills</h1>
-  <div class="all-skills">
-    <% for(let i=0; i<skills.length; i++) { %>
-    <p><%= skills[i].skill %></p>
-    <% } %>
+  <div class="container">
+    <a href="/resume" class="btn-floating">BACK</a>
+    <h1>Skills</h1>
+    <div class="all-skills">
+      <% for(let i=0; i<skills.length; i++) { %>
+      <p><%= skills[i].skill %></p>
+      <% } %>
+    </div>
+
+    <hr><br>
+
+    <form class="skills" action="/add/skill/<%=resume.id%>" method="POST">
+      <input type="text" name="skill" placeholder="add a skill...">
+      <button class="btn waves-effect waves-light" type="submit">Submit</button>
+    </form>
   </div>
-
-  <hr><br>
-
-  <form class="skills" action="/add/skill/<%=resume.id%>" method="POST">
-    <input type="text" name="skill" placeholder="add a skill...">
-    <button type="submit">Submit</button>
-  </form>
 
 </body>
 </html>
