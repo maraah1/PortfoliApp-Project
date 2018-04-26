@@ -61,7 +61,7 @@ module.exports = {
         city: req.body.city,
         state: req.body.state,
         status: req.body.status
-      }).then((results) => { <<
+      }).then((results) => {
 
         console.log("user results:", results)
         res.redirect("/register/user")
@@ -95,7 +95,7 @@ module.exports = {
       .where('projects.user_id', req.session.user_id)
       .delete()
       .then((proResults) => {
-        console.log('new project results:', proResults)
+        console.log('deleted results:', proResults)
         knex('images')
           .where('images.project_id', proResults[0].id)
           .delete()
