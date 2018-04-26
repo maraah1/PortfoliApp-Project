@@ -115,7 +115,7 @@ module.exports = {
         end_date: req.body.end_date
       })
       .then(() => {
-        res.redirect('/resume')
+        res.redirect(`/resume/${req.session.user_id}`)
       })
   },
 
