@@ -19,7 +19,6 @@ module.exports = {
                               .then((awards) => {
                                 knex('users').where("id", req.session.user_id)
                                   .then((loggedUser) => {
-                                    console.log("loggedUser", loggedUser)
                                     res.render('resume', {
                                       loggedUser: loggedUser[0],
                                       user: data[0],
@@ -79,7 +78,8 @@ module.exports = {
           .then((skills) => {
             res.render('addSkill', {
               resume,
-              skills: skills
+              skills: skills,
+              user_id: req.session.user_id
             });
           })
       })

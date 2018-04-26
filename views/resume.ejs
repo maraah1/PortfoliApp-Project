@@ -54,6 +54,8 @@
             <!-- PENCIL BUTTON -->
             <a href="/edit/education/<%= education[i].id %>"</a><i id="education"
            class="material-icons">edit</i></a>
+            <a href="/delete/education/<%= education[i].id %>"</a><i id="deleteEd"
+           class="material-icons">delete</i></a>
            <!--  -->
             <p class="flow-text" id="position1"><%= education[i].school_name %></p>
             <p><%= education[i].degree %></p>
@@ -67,9 +69,10 @@
 
           <h2>Skills</h2>
           <% for(let i=0; i<skills.length; i++) { %>
-            <p class="flow-text" id="position2"><%= skills[i].skill %>
             <!-- PENCIL BUTTON -->
-            <a href="/edit/skill"</a><i id="skill" class="material-icons">edit</i></a></p>
+            <p class="flow-text" id="position2"><%= skills[i].skill %>
+            <a href="/edit/skill"</a><i id="skill" class="material-icons">edit</i></a>
+            <a href="/delete/skill"</a><i id="deleteSkill" class="material-icons">delete</i></a></p>
             <!--  -->
           <% } %>
           <!-- EDIT BUTTON -->
@@ -85,6 +88,7 @@
             <% for (let i=0; i<employment.length; i++) { %>
           <!-- PENCIL BUTTON -->
               <a href="/edit/employment"</a><i id="employment" class="material-icons">edit</i></a>
+              <a href="/delete/employment"</a><i id="deleteEmployment" class="material-icons">delete</i></a>
             <!--  -->
               <p class="flow-text" id="position3"><%= employment[i].position %></p>
               <p><%= employment[i].location %></p>
@@ -102,6 +106,7 @@
           <% for(let i=0; i<awards.length; i++) { %>
             <!-- PENCIL BUTTON -->
             <a href="/edit/award"</a><i id="award" class="material-icons">edit</i></a>
+            <a href="/delete/award"</a><i id="deleteAward" class="material-icons">delete</i></a>
             <!--  -->
             <p class="flow-text" id="position4"><%= awards[i].award_name %></p>
             <p><%= awards[i].award_description %></p>
@@ -115,6 +120,7 @@
           <% for(let i=0; i<events.length; i++) { %>
             <!-- PENCIL BUTTON -->
             <a href="/edit/event"</a><i id="event" class="material-icons">edit</i></a>
+            <a href="/delete/event"</a><i id="deleteEvent" class="material-icons">delete</i></a>
             <!--  -->
             <p class="flow-text" id="position5"><%= events[i].event_name %></p>
             <p><%= events[i].event_description %></p>
@@ -127,7 +133,7 @@
 
        <% if (loggedUser.status == "user") { %>
          <style media="screen">
-           #education, #skill, #employment, #award, #event {
+           #education, #skill, #employment, #award, #event, #deleteSkill, #deleteEmployment {
              display: inline-block;
            }
            .edit_buttons {
@@ -136,7 +142,7 @@
          </style>
       <% } else if(loggedUser.status == "employer") { %>
          <style media="screen">
-         #education, #skill, #employment, #award, #event {
+         #education, #skill, #employment, #award, #event, #deleteEd, #deleteSkill, #deleteEmployment {
            display: none;
          }
          .edit_buttons {
