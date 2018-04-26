@@ -8,6 +8,48 @@
   <link href="/styles.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
+
+  <style>
+    #profile-pic{
+      max-width: 15rem;
+      margin: 2em 0 2em 5em;
+    }
+    #resume_button{
+      color: #e25b4b;
+    }
+    .header{
+      background-color: #fafafa;
+      border-bottom: 4px solid #16b1b5;
+    }
+    .btn, .btn-large, .btn-small, .btn-floating {
+      text-decoration: none;
+      color: #fff;
+      background-color: #e25b4b;
+      text-align: center;
+      letter-spacing: .5px;
+      -webkit-transition: background-color .2s ease-out;
+      transition: background-color .2s ease-out;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+    .btn:hover, .btn-floating:hover{
+      background-color: #ff6f5f;
+    }
+    .btn-floating{
+      font-size: .7em;
+    }
+    #project_title{
+      margin-bottom: 0;
+      line-height: .5em;
+    }
+    #gallery{
+      display: inline-block;
+    }
+    #gallery img .responsive-img{
+      height: 4vh;
+    }
+  </style>
+
 </head>
 <body>
 
@@ -54,43 +96,26 @@
       </div>
       <% } %>
     </div>
-  <% if(loggedUser.status == "user"){ %>
-    <style media="screen">
-      #resume_button {
-        display:block;
-      }
-    </style>
-  <% } else if(loggedUser.status == "employer") { %>
-    <style media="screen">
-      #resume_button {
-        display: block;
-      }
-     </style>
-   <% } else if(!loggedUser) { %>
-     <style media="screen">
-       #resume_button {
-         display: none;
-       }
-     </style>
-   <% } %>
 
-  <div id="gallery">
-    <% for(let i=0; i<projects.length; i++) { %>
-    <div class="project">
-      <%= projects[i].title %><br>
-      <% for(let j=0; j<projects[i].images.length; j++) { %>
-       <img src="<%= projects[i].images[j].img_url %>" style="width: 200px">
-      <% } %><br>
-      <%= projects[i].project_description %><br>
-      <a href="">View more...</a>
+    <form id="add_project" action="/addproject">
+         <button class="btn waves-effect waves-light" type="submit">Add Project</button>
+    </form>
 
-    </div><br>
+    <% if (user.status == "user") { %>
+   <style media="screen">
+     #add_project {
+       display:block;
+     }
+   </style>
+
+    <% } else { %>
+      <style media="screen">
+        #add_project {
+          display: none;
+        }
+      </style>
     <% } %>
   </div>
-
-  <form id="add_project" action="/addproject/<%= user.id %>">
-       <button type="submit">Add Project</button>
-  </form>
 
   <% if (loggedUser.status == "user") { %>
  <style media="screen">
