@@ -81,5 +81,21 @@ module.exports = {
       }).catch(() => {
         res.redirect('/register/user')
       })
+  },
+
+  getDelete: (req, res) => {
+    res.render('gallery')
+  },
+
+  delete: (req, res) => {
+    knex('projects')
+      .where('id', req.params.id)
+      .delete()
+      .then((proResults) => {
+        console.log('deleted results:', proResults)
+        res.redirect(`/gallery/${req.session.user_id}`)
+      })
   }
+
+
 }

@@ -29,6 +29,7 @@ module.exports = function(app) {
 
   //GALLERY
   app.get('/gallery/:id', users.bio);
+  app.post('/gallery/delete/:id', users.delete)
   app.get('/edit/education/:id', resume.editEd);
   app.post('/edit/education/:id', resume.updateEd);
   app.get('/add/education/:resume_id', resume.addEd);

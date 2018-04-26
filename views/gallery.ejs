@@ -93,6 +93,9 @@
         <% } %><br>
         <p class="truncate random"><%= projects[i].project_description %></p><br>
         <a class="btn-floating" href="">View more...</a>
+        <form class="" action="/gallery/delete/ <%= projects[i].id%>" method="post">
+          <button type="submit">Delete</button>
+        </form>
       </div>
       <% } %>
     </div>
