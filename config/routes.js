@@ -18,6 +18,10 @@ module.exports = function(app) {
   app.post('/register/employer', employers.postRegistration);
   app.post('/login/employer', employers.postLogin);
 
+  app.get('/gallery/:id', users.bio);
+  app.get("/logout", users.logout);
+
+
   app.use(validate);
 
   //RESUME
@@ -30,7 +34,6 @@ module.exports = function(app) {
   app.post('/delete/skill/:id', resume.deleteSkill);
 
   //GALLERY
-  app.get('/gallery/:id', users.bio);
   app.post('/gallery/delete/:id', users.delete)
   app.get('/edit/education/:id', resume.editEd);
   app.post('/edit/education/:id', resume.updateEd);
@@ -40,6 +43,8 @@ module.exports = function(app) {
   //PROJECT ADDER
   app.get('/addproject', project.render);
   app.post('/addproject', project.projectform);
+
+  app.get("/logout", users.logout);
 
 
 }
