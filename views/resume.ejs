@@ -89,32 +89,22 @@
           <h2>Skills</h2>
           <% for(let i=0; i<skills.length; i++) { %>
             <!-- PENCIL BUTTON -->
-
+            <p class="flow-text" id="position2"><%= skills[i].skill %></p><br>
             <% if(loggedUser.status == "user") { %>
-
-            <p class="flow-text" id="position2"><%= skills[i].skill %></p>
 
             <a href="/edit/skill/<%= skills[i].id %>"</a><i id="skill" class="material-icons">edit</i></a>
             <form class="" action="/delete/skill/<%= skills[i].id %>" method="post">
              <button type="submit"><i id="deleteEd"
                class="material-icons">delete</i></button>
 
-            </form>
-          <% } %>
-
             </form><br>
-
-            <!--  -->
-              <p class="flow-text" id="position2"><%= skills[i].skill %>
+          <% } %>
           <% } %>
           <!-- EDIT BUTTON -->
           <% if(loggedUser.status == "user") { %>
           <a class="edit_buttons" href="/add/skill/<%= resume.id %>"</a>Add New Skill</a><br>
-<<<<<<< HEAD
           <% } %>
           <!--  -->
-=======
->>>>>>> af57ed5350726154236a9476396d7e521ee85c4e
         </section>
       </div>
 
