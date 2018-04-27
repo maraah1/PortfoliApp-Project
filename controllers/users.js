@@ -10,6 +10,7 @@ module.exports = {
   },
 
   bio: (req, res) => {
+    console.log(req.params);
     knex('users').where('id', req.params.id)
       .then((data) => {
         knex('projects').where('projects.user_id', req.params.id)
@@ -26,14 +27,23 @@ module.exports = {
               projects.map((proj) => {
                 proj.images = images.filter(img => img.project_id == proj.id);
               })
-              knex("users").where("id", req.session.user_id).then((loggedUser) => {
+              if (req.session.user_id) {
+                knex("users").where("id", req.session.user_id).then((loggedUser) => {
+                  res.render('gallery', {
+                    user: data[0],
+                    projects: projects,
+                    images: images,
+                    loggedUser: loggedUser[0]
+                  })
+                })
+              } else {
                 res.render('gallery', {
                   user: data[0],
                   projects: projects,
                   images: images,
-                  loggedUser: loggedUser[0]
+                  loggedUser: false
                 })
-              })
+              }
             })
           })
       })
@@ -91,6 +101,10 @@ module.exports = {
         console.log('deleted results:', proResults)
         res.redirect(`/gallery/${req.session.user_id}`)
       })
+  },
+  logout: (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
   }
 
 

@@ -59,30 +59,12 @@
     <div class="col s12 m3 l3 bio">
       <p class="flow-text">Specialty: <%= user.media_type %><br>Bio: <%= user.bio %></p>
     </div>
-    <a class="col s12 m3 l3 flow-text" id="resume_button" href="/resume/<%= user.id %>">My Resume</a>
+    <% if(loggedUser){ %>
+      <a class="col s12 m3 l3 flow-text" id="resume_button" href="/resume/<%= user.id %>">My Resume</a>
+    <% } %>
   </div>
 
   <div class="container">
-
-    <% if(user.status == "user"){ %>
-      <style media="screen">
-        #resume_button {
-          display:block;
-        }
-      </style>
-    <% } else if(user.status == "employer") { %>
-      <style media="screen">
-        #resume_button {
-          display: block;
-        }
-       </style>
-     <% } else { %>
-       <style media="screen">
-         #resume_button {
-           display: none;
-         }
-       </style>
-     <% } %>
 
     <div id="gallery" class="row">
       <% for(let i=0; i<projects.length; i++) { %>
@@ -92,47 +74,22 @@
          <img class="hoverable responsive-img" src="<%= projects[i].images[j].img_url %>" style="width: 200px">
         <% } %><br>
         <p class=""><%= projects[i].project_description %></p><br>
-        <form class="" action="/gallery/delete/ <%= projects[i].id%>" method="post">
-          <button class="btn-floating" type="submit">Delete</button>
-        </form>
+        <% if(loggedUser.status == "user"){ %>
+          <form class="" action="/gallery/delete/ <%= projects[i].id%>" method="post">
+            <button class="btn-floating" type="submit">Delete</button>
+          </form>
+        <% } %>
       </div>
       <% } %>
     </div>
+<% if(loggedUser.status == "user") { %>
+  <form id="add_project" action="/addproject">
+       <button class="btn waves-effect waves-light" type="submit">Add Project</button>
+  </form>
+<% } %>
+</div>
+<a href="/" class="btn-floating">BACK</a>
 
-    <form id="add_project" action="/addproject">
-         <button class="btn waves-effect waves-light" type="submit">Add Project</button>
-    </form>
-
-    <% if (user.status == "user") { %>
-   <style media="screen">
-     #add_project {
-       display:block;
-     }
-   </style>
-
-    <% } else { %>
-      <style media="screen">
-        #add_project {
-          display: none;
-        }
-      </style>
-    <% } %>
-  </div>
-
-  <% if (loggedUser.status == "user") { %>
- <style media="screen">
-   #add_project {
-     display: block;
-   }
- </style>
-
-  <% } else if(loggedUser.status == "employer"){ %>
-    <style media="screen">
-      #add_project {
-        display: none;
-      }
-    </style>
-  <% } %>
 
 </body>
 </html>
