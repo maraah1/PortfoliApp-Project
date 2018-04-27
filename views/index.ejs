@@ -12,6 +12,7 @@
 
   #pic {
     display: block;
+    max-height: 15rem;
   }
   nav{
     background-color: #16b1b5;
@@ -74,7 +75,7 @@
             </style>
           <% } else if(users[i].status == "user") { %>
           <div class="user_list card ">
-          <img id="pic" class="responsive-image" src="<%= users[i].profile_pic %>" alt="">
+          <img id="pic" class="responsive-image hoverable" src="<%= users[i].profile_pic %>" alt="">
           <p><%= users[i].first_name %> <%= users[i].last_name %></p>
           <p><%= users[i].media_type %></p>
           <form action="/gallery/<%= users[i].id %>">
