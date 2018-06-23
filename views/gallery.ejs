@@ -10,16 +10,47 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
 
   <style>
+
     #profile-pic{
-      max-width: 15rem;
-      margin: 2em 0 2em 5em;
+      width: 8rem;
+      box-shadow: 0 0 140px 50px white; /* outer cyan */
+      border: 2px solid #16b1b5
     }
     #resume_button{
       color: #e25b4b;
     }
+
+    #userName {
+      margin: 0px 500px 0px 500px;
+      font-size: 2rem;
+      border-bottom: 2px solid silver;
+      color: grey
+    }
+
+    #project_title{
+      margin-bottom: 0;
+      line-height: .5em;
+    }
+    #gallery{
+      display: inline-block;
+    }
+
+    #gallery img .responsive-img{
+      height: 4vh;
+    }
+
+    #add_project {
+      background-color: #16b1b5
+    }
+
+    .media-type {
+      font-size: 15px
+    }
+
+
     .header{
-      background-color: #fafafa;
-      border-bottom: 4px solid #16b1b5;
+      background-color: #ebe9e7;
+      box-shadow:  3px 3px 5px 1px #16b1b5;
     }
     .btn, .btn-large, .btn-small, .btn-floating {
       text-decoration: none;
@@ -38,35 +69,59 @@
     .btn-floating{
       font-size: .7em;
     }
-    #project_title{
-      margin-bottom: 0;
-      line-height: .5em;
+
+    #backBtn {
+      text-align: left;
+      margin-bottom: none;
+      background-color: #16b1b5
     }
-    #gallery{
-      display: inline-block;
+
+    .project {
+      box-sizing: border-box;
+      box-shadow: 3px 3px 5px 1px #ccc;
+      height: 50vh;
+      margin: 5px;
     }
-    #gallery img .responsive-img{
-      height: 4vh;
+
+    .p.responsive-img:hover {
+      height: 200rem;
     }
+
+    .delete {
+      color: red
+    }
+
+
+
     button {
-    border: none!important;
+      border: none!important;
     }
+
   </style>
 
 </head>
 <body>
+<div class="header">
+  <a href="/"><button  id="backBtn" class="btn waves-effect waves-light" type="submit">Back</button></a>
 
-  <div class="row header valign-wrapper center-align">
-    <img id="profile-pic" class="circle responsive-img col s12 m3 l3" src="<%= user.profile_pic %>">
-    <h1 id="user-name" class="col s12 m3 l3"><%= user.first_name %> <%= user.last_name %></h1>
-    <div class="col s12 m3 l3 bio">
-      <p class="flow-text">Specialty: <%= user.media_type %><br>Bio: <%= user.bio %></p>
+  <div class="center-align">
+  <div>
+    <img id="profile-pic" class="circle responsive-img" src="<%= user.profile_pic %>">
+  </div>
+    <div id="userName" class="">
+      <%= user.first_name %> <%= user.last_name %>
+    <div class="media-type">
+      <%= user.media_type %>
     </div>
-    <% if(loggedUser){ %>
+   </div>
+    <div class=" bio">
+      <p class="flow-text"><%= user.bio %></p>
+    </div>
+    <% if(user.id === loggedUser.id){ %>
       <a class="col s12 m3 l3 flow-text" id="resume_button" href="/resume/<%= user.id %>">My Resume</a>
     <% } %>
   </div>
-
+</div>
   <div class="container">
 
     <div id="gallery" class="row">
@@ -77,21 +132,20 @@
          <img class="hoverable responsive-img" src="<%= projects[i].images[j].img_url %>" style="width: 200px">
         <% } %><br>
         <p class=""><%= projects[i].project_description %></p><br>
-        <% if(loggedUser.status == "user"){ %>
+        <% if(user.id === loggedUser.id){ %>
           <form class="" action="/gallery/delete/ <%= projects[i].id%>" method="post">
-            <button class="btn-floating" type="submit">Delete</button>
+            <button class="delete" type="submit">Delete</button>
           </form>
         <% } %>
       </div>
       <% } %>
     </div>
-<% if(loggedUser.status == "user") { %>
-  <form id="add_project" action="/addproject">
-       <button class="btn waves-effect waves-light" type="submit">Add Project</button>
+<% if(user.id === loggedUser.id) { %>
+  <form action="/addproject">
+       <button id="add_project" class="btn waves-effect waves-light" type="submit">Add Project</button>
   </form>
 <% } %>
 </div>
-<a href="/" class="btn-floating">BACK</a>
 
 
 </body>

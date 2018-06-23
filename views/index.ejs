@@ -7,31 +7,98 @@
   <title>Search Portfolios</title>
   <link href="/styles.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer></script>
   <style>
 
+#profile-pic{
+  height: 6vh;
+  text-align: left;
+  margin: 10px 5px 0px 0px
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
   #pic {
     display: block;
-    max-height: 15rem;
+    height: 275px;
+    width: 300px
+
   }
+
+  #body {
+    background-color: #ebe9e7
+  }
+
+
   nav{
     background-color: #16b1b5;
   }
-  .nav-wrapper .input-field input[type=search]{
-    width: 25%;
-    margin-left: 2em;
+   .input-field input[type=search]{
+    width: 50%;
+    padding-right: .5em
   }
   #login{
     z-index: 1;
     position:relative;
-    margin-right: 2em;
+
   }
   .card{
-    -webkit-box-shadow: 0 0 0 0;
-    box-shadow: 0 0 0 0;
-    margin-left: 5em;
+    -webkit-box-shadow: 3px 3px 5px 1px #ccc;
+   -moz-box-shadow: 3px 3px 5px 1px #ccc;
+    box-shadow:  3px 3px 5px 1px #ccc;
+    margin-left: 2em;
     margin-top: 2em;
+    padding-bottom: 5px;
+    text-align: center;
+
   }
+
+  @media all and (max-width: 400px) {
+  .container > li {
+    flex-basis: 100%;
+  }
+  .search {
+    order: 1;
+  }
+}
+
+  .header {
+    margin-top: 0px;
+    margin-left: 20%;
+    text-align: center;
+    padding: none;
+    font-size: 8vh;
+    display: inline-block;
+    text-shadow: 1px 1px 2px lightgrey
+
+
+  }
+  .dropdown {
+    background-color: #16b1b5;
+  }
+
+
+  .dropdown:hover {
+
+  }
+
+
+  .card:hover {
+    -webkit-box-shadow: 3px 3px 5px 3px #cdcbd4;
+   -moz-box-shadow:  3px 3px 5px 3px #cdcbd4;
+    box-shadow:      3px 3px 5px 3px #cdcbd4;
+
+  }
+
   .btn, .btn-large, .btn-small, .btn-floating {
     text-decoration: none;
     color: #fff;
@@ -50,23 +117,28 @@
   }
   </style>
 </head>
-<body>
+<body id="body">
 
     <nav>
       <div class="nav-wrapper">
         <ul id="login" class="right">
+          <% if (loggedUser) { %>
+          <li><a href="/gallery/<%=users[0].id%>"><img id="profile-pic" class="left circle responsive-img" src="<%= users[0].profile_pic %>"></a></li>
+          <li>Welcome <%= loggedUser[0].first_name%></li>
+          <li><a href="/logout">Logout</a></li>
+          <% } else { %>
           <li><a href="/register/user">For Users</a></li>
           <li><a href="/register/employer">For Employers</a></li>
-          <li><a href="/logout">Logout</a></li>
+          <% } %>
         </ul>
-        <div class="input-field">
-          <input type="search" placeholder="Search..">
+        <h4 class="header col s4">PortfoliApp</h4>
+        <div class="input-field left search col s4">
+          <input id="searchBar" type="search" placeholder="Search.." onkeyup="myFunction()">
         </div>
       </div>
     </nav>
 
     <div class="container">
-      <h1 class="center">PortfoliApp</h1>
       <% for(let i = 0; i < users.length; i++) { %>
           <% if(users[i].status == "employer") { %>
             <style media="screen">
@@ -75,7 +147,7 @@
               }
             </style>
           <% } else if(users[i].status == "user") { %>
-          <div class="user_list card ">
+          <div id="myUL" class="user_list card">
           <img id="pic" class="responsive-image hoverable" src="<%= users[i].profile_pic %>" alt="">
           <p><%= users[i].first_name %> <%= users[i].last_name %></p>
           <p><%= users[i].media_type %></p>
@@ -85,6 +157,7 @@
           <% } %>
         </div>
       <% } %>
+
       <% if(users.status == "employer") { %>
         <style media="screen">
           .user_list {
@@ -94,6 +167,33 @@
       <% } %>
     </div>
 
+    <script>
+
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+  }
+
+   function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+  }
+
+  function myFunction() {
+
+    let input = document.getElementById('searchBar');
+    let list = document.querySelectorAll(".user_list");
+    console.log(input)
+    console.log(list)
+    for(let i = 0; i<list.length; i++){
+      if(list[i].innerHTML.toLowerCase().includes(input.value)){
+        list[i].style.display = "inline-block";
+      }else{
+        list[i].style.display = "none";
+      }
+    }
+
+  }
+
+  </script>
 
 </body>
 </html>

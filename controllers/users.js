@@ -2,12 +2,23 @@ const knex = require("../db/knex.js");
 module.exports = {
 
   index: (req, res) => {
-    knex('users').then((data) => {
+  knex('users').then((data) => {
+    if(req.session.user_id) {
+        knex('users').where('id', req.session.user_id).then((loggedUser) => {
+          console.log("loggedUser:", loggedUser[0].first_name)
+        res.render('index', {
+          users: data,
+          loggedUser: loggedUser
+        });
+      })
+  } else {
       res.render('index', {
-        users: data
-      });
-    })
-  },
+        users: data,
+        loggedUser: false
+      })
+    }
+  })
+},
 
   bio: (req, res) => {
     console.log(req.params);
